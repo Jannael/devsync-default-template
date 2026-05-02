@@ -1,11 +1,11 @@
 ---
-import devsync from '@/devsync'
-import { defaultLang } from '@/devsync'
+import devsync from '@/devsync/devsync'
+import { defaultLang } from '@/devsync/devsync'
 import '@/styles/global.css'
 import Footer from '@/sections/footer.astro'
-import '@fontsource-variable/jost'
+import '@fontsource-variable/roboto/wght.css'
 import jostLatinWoff2 from '@fontsource-variable/jost/files/jost-latin-wght-normal.woff2?url'
-import { ogLocale } from '@/const/fields-translations'
+import { ogLocale } from '@/devsync/fields-translations'
 
 interface Props {
   title?: string

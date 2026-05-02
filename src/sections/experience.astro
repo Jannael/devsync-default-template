@@ -1,7 +1,7 @@
 ---
-import devsync from '@/devsync'
-import { defaultLang } from '@/devsync'
-import { translations, type availableLangsType } from '@/const/fields-translations'
+import devsync from '@/devsync/devsync'
+import { defaultLang } from '@/devsync/devsync'
+import { translations, type availableLangsType } from '@/devsync/fields-translations'
 import InfoCard from '@/components/info-card.astro'
 
 const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType

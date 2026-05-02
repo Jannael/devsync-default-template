@@ -1,10 +1,10 @@
 ---
-import devsync from 'devsync'
+import devsync from '@/devsync/devsync'
 import '@/styles/global.css'
 import '@fontsource-variable/roboto/wght.css'
 import robotoLatinWoff2 from '@fontsource-variable/roboto/files/roboto-latin-wght-normal.woff2?url'
-import { defaultLang, languages } from '@/devsync'
-import { translations, type availableLangsType } from '@/const/fields-translations'
+import { defaultLang, languages } from '@/devsync/devsync'
+import { translations, type availableLangsType } from '@/devsync/fields-translations'
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
