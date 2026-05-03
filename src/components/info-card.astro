@@ -33,42 +33,45 @@ const { company, position, img, web, date, links, description, list, skills, nam
   Astro.props
 ---
 
-<li class="min-w-100 relative mb-10 flex-1">
-  <article
-    class="border-text/50 flex flex-col items-center justify-center rounded-2xl border p-10 lg:block"
-  >
-    <div class="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-      <div class="mb-8 flex items-center gap-5">
+<li class="group relative mb-10 w-full last:mb-0 lg:mb-0">
+  <article class="relative overflow-hidden rounded-3xl bg-main/40 p-8 shadow-lg shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-main/30 lg:p-10">
+    <div class="absolute left-0 top-0 h-1 w-0 rounded-r-full bg-linear-to-r from-third to-accent transition-all duration-500 group-hover:w-24" />
+    
+    <div class="mb-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-5">
         {
           img && (
-            <img
-              src={img}
-              alt={company}
-              width="44"
-              height="44"
-              class="h-11 w-11 rounded-full object-cover"
-            />
+            <div class="relative">
+              <div class="absolute -inset-1 rounded-full bg-linear-to-r from-third to-accent opacity-30 blur-sm" />
+              <img
+                src={img}
+                alt={company}
+                width="56"
+                height="56"
+                class="relative z-10 h-14 w-14 rounded-full border-2 border-main object-cover shadow-lg"
+              />
+            </div>
           )
         }
         <div>
           {
             company && position && (
               <h3
-                class={`flex flex-col items-center font-semibold lg:text-2xl ${expand ? 'gap-5' : 'gap-1'} ${expand ? 'text-2xl' : 'text-[20px]'} ${expand ? 'lg:flex-row' : 'lg:flex-col'}`}
+                class={`flex flex-col items-center font-bold lg:text-2xl ${expand ? 'gap-2' : 'gap-1'} ${expand ? 'text-2xl' : 'text-lg'} ${expand ? 'lg:flex-row' : 'lg:flex-col'}`}
               >
                 {position}
-                {expand && <span class="text-text/70 hidden w-fit text-lg lg:block"> | </span>}
-                <span class="text-text/70 text-sm lg:text-lg">{company}</span>
+                {expand && <span class="text-text/60 hidden w-fit text-lg lg:block">|</span>}
+                <span class="text-accent text-sm lg:text-base">{company}</span>
               </h3>
             )
           }
           {
             name && (
               <h3
-                class={`flex flex-col items-center font-semibold lg:text-2xl ${expand ? 'gap-5' : 'gap-1'} ${expand ? 'text-2xl' : 'text-[20px]'} ${expand ? 'lg:flex-row' : 'lg:flex-col'}`}
+                class={`flex flex-col items-center font-bold lg:text-2xl ${expand ? 'gap-2' : 'gap-1'} ${expand ? 'text-2xl' : 'text-lg'} ${expand ? 'lg:flex-row' : 'lg:flex-col'}`}
               >
                 {name}
-                {expand && <span class="text-text/70 hidden w-fit text-lg lg:block"> | </span>}
+                {expand && <span class="text-text/60 hidden w-fit text-lg lg:block">|</span>}
               </h3>
             )
           }
@@ -77,45 +80,41 @@ const { company, position, img, web, date, links, description, list, skills, nam
 
       {
         date && (
-          <p
-            class={`bg-main/60 border-text/50 text-text/80 mb-5 w-fit rounded-full border px-5 py-3 lg:mb-0 lg:self-start ${
-              expand ? 'text-font-medium' : 'text-[10px]'
-            }`}
-          >
+          <span class="whitespace-nowrap rounded-full bg-second/20 px-5 py-2.5 text-sm font-medium text-accent backdrop-blur-sm">
             {date}
-          </p>
+          </span>
         )
       }
     </div>
 
     {
       links?.length ? (
-        <div class="mb-8 mt-4 flex flex-wrap gap-2">
+        <div class="mb-6 flex flex-wrap gap-3">
           {links.map((link) => (
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-third/70 hover:bg-third text-text/80 border-text/50 flex items-center justify-center rounded-full border px-3 py-1 text-sm transition-transform hover:scale-105"
+              class="group/btn relative flex items-center justify-center rounded-full border border-text/15 bg-main/50 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-third hover:bg-third/30 hover:shadow-lg hover:shadow-third/20"
             >
-              <img src={link.icon} alt={link.name} class="mr-2 inline h-4 w-4" />
-              {link.name}
+              {link.icon && <img src={link.icon} alt={link.name} class="mr-2 inline h-4 w-4" />}
+              <span class="relative z-10">{link.name}</span>
             </a>
           ))}
         </div>
       ) : null
     }
 
-    {description && <p class="text-text/70 mb-10 mt-4 text-xl leading-6">{description}</p>}
+    {description && <p class="text-text/80 mb-8 text-base leading-relaxed">{description}</p>}
 
     {
       list?.items?.length ? (
         <>
-          <header class="mb-3 text-xl font-bold">{list.title}</header>
-          <ul class="text-text/90 mb-16 mt-4 list-disc space-y-2 pl-8 text-sm">
+          <header class="mb-4 text-sm font-bold uppercase tracking-widest text-third">{list.title}</header>
+          <ul class="mb-8 list-disc space-y-2.5 pl-7 text-sm">
             {list.items.map((item) => (
-              <li class="text-text/60 text-lg">
-                <span class="text-text">{item.highlight}:</span> {item.description}
+              <li class="text-text/70 transition-colors duration-300 hover:text-text">
+                <span class="font-semibold text-accent">{item.highlight}:</span> {item.description}
               </li>
             ))}
           </ul>
@@ -125,10 +124,10 @@ const { company, position, img, web, date, links, description, list, skills, nam
 
     {
       skills?.length ? (
-        <div class="mt-4 flex flex-wrap justify-around lg:justify-start">
+        <div class="flex flex-wrap gap-2">
           {skills.map((skill) => (
-            <span class="bg-third/70 hover:bg-third text-text/80 border-text/50 rounded-full border px-3 py-1 text-sm transition-transform hover:scale-105">
-              <img src={skill.icon} alt={skill.name} class="mr-2 inline h-4 w-4" />
+            <span class="inline-flex items-center rounded-full border border-text/10 bg-second/20 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30">
+              {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-2 inline h-3.5 w-3.5" />}
               {skill.name}
             </span>
           ))}

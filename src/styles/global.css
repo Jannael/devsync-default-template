@@ -1,27 +1,64 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-main: #d2f3ed;
-  --color-second: #1f695b;
-  --color-third: #5cdfbe;
-  --color-accent: #6fcf97;
-  --color-text: #000000;
+  --color-main: #e8f5f0;
+  --color-second: #1a5c4a;
+  --color-third: #3ddc97;
+  --color-accent: #2d8a5e;
+  --color-text: #1a1a2e;
 }
 
 .dark {
-  --color-main: #091413;
-  --color-second: #285a48;
-  --color-third: #408a71;
-  --color-accent: #b0e4cc;
-  --color-text: #f4f7f6;
+  --color-main: #0a1612;
+  --color-second: #1a3d30;
+  --color-third: #2a7d5c;
+  --color-accent: #5cd6a0;
+  --color-text: #e8f5f0;
+}
+
+body {
+  background: linear-gradient(135deg, var(--color-main) 0%, color-mix(in srgb, var(--color-third) 15%, var(--color-main)) 50%, color-mix(in srgb, var(--color-accent) 10%, var(--color-main)) 100%);
+  min-height: 100vh;
+}
+
+.dark body {
+  background: linear-gradient(135deg, var(--color-main) 0%, color-mix(in srgb, var(--color-third) 8%, var(--color-main)) 50%, color-mix(in srgb, var(--color-accent) 5%, var(--color-main)) 100%);
+}
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-third) 20%, var(--color-accent) 50%, var(--color-third) 80%, transparent 100%);
+  opacity: 0.4;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .card-glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px -10px var(--color-accent);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-third), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 img[src^='/icons/'] {
-  filter: brightness(0) saturate(100%) opacity(40%);
+  filter: brightness(0) saturate(100%) opacity(50%);
 }
 
 .dark img[src^='/icons/'] {
-  filter: brightness(0) saturate(100%) invert(1) opacity(60%);
+  filter: brightness(0) saturate(100%) invert(1) opacity(70%);
 }
 
 .dark .footer-logo {

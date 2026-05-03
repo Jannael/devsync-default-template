@@ -1,39 +1,42 @@
 ---
-import devsync from '@/devsync/devsync'
+import devsync from "@/devsync/devsync";
 
-const fullName = devsync.name ?? 'Portfolio'
-const year = new Date().getFullYear()
-const socialMedia = devsync.socialMedia ?? []
+const fullName = devsync.name ?? "Portfolio";
+const year = new Date().getFullYear();
+const socialMedia = devsync.socialMedia ?? [];
 ---
 
-<footer class="border-text/20 mt-16 border-t px-6 py-6">
+<footer
+  class="border-text/10 mt-16 border-t border-accent/20 bg-main/30 backdrop-blur-sm"
+>
   <div
-    class="m-auto flex w-full max-w-5xl flex-col items-center justify-between gap-3 text-sm lg:flex-row"
+    class="m-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 lg:flex-row"
   >
-    <p class="text-text/75 flex items-center gap-2">
+    <div class="flex items-center gap-3">
       <img
         src="/logo-192-black.webp"
         alt="Devsync logo"
-        width="16"
-        height="16"
-        class="footer-logo h-4 w-4 rounded-sm"
+        width="20"
+        height="20"
+        class="footer-logo h-5 w-5 rounded-sm"
       />
-      <span>{year} {fullName}</span>
-      <span class="text-text/45">·</span>
-      <span class="text-text/65">Built with Devsync</span>
-    </p>
+      <span class="text-text/60 text-sm">{year} {fullName}</span>
+      <span class="text-text/30">·</span>
+      <span class="text-text/50 text-sm">Built with Devsync</span>
+    </div>
 
     {
       socialMedia.length > 0 && (
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-wrap items-center gap-5">
           {socialMedia.slice(0, 3).map((social) => (
             <a
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-text/70 hover:text-text text-xs underline decoration-transparent transition-colors hover:decoration-current"
+              class="group relative text-sm text-text/60 transition-colors hover:text-accent"
             >
               {social.name}
+              <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-linear-to-r from-third to-accent transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>

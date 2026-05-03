@@ -1,61 +1,92 @@
 ---
 interface Props {
-  name?: string
-  img?: string
-  web?: string
+  name?: string;
+  img?: string;
+  web?: string;
   links?: {
-    name?: string
-    url?: string
-    mdBadge?: string
-    icon?: string
-  }[]
-  description?: string
+    name?: string;
+    url?: string;
+    mdBadge?: string;
+    icon?: string;
+  }[];
+  description?: string;
   list?: {
-    title?: string
+    title?: string;
     items?: {
-      highlight?: string
-      description?: string
-    }[]
-  }
+      highlight?: string;
+      description?: string;
+    }[];
+  };
   skills?: {
-    name?: string
-    mdBadge?: string
-    icon?: string
-  }[]
+    name?: string;
+    mdBadge?: string;
+    icon?: string;
+  }[];
 }
 
-const { name, img, web, links, description, list, skills } = Astro.props
+const { name, img, web, links, description, list, skills } = Astro.props;
 ---
 
-<li class="relative mb-10 w-full lg:mb-0">
-  <article class="border-text/30 overflow-hidden rounded-2xl border">
+<li class="group relative mb-10 w-full lg:mb-0">
+  <article
+    class="relative overflow-hidden rounded-3xl bg-main/30 shadow-xl shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-main/40"
+  >
     {
       img && (
-        <a href={web ?? '#'} target="_blank" rel="noopener noreferrer" class="group block">
+        <a
+          href={web ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group/img relative block overflow-hidden"
+        >
           <img
             src={img}
-            alt={name ?? 'Project preview'}
-            class="h-52 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] lg:h-64"
+            alt={name ?? "Project preview"}
+            class="h-56 w-full object-cover transition-transform duration-700 group-hover/Img:scale-110 lg:h-64"
             width="1200"
             height="675"
           />
+          <div class="absolute inset-0 bg-linear-to-t from-main/80 via-main/20 to-transparent opacity-60 transition-opacity duration-500 group-hover/Img:opacity-80" />
+          <div class="absolute inset-0 bg-linear-to-r from-third/20 to-accent/20 opacity-0 transition-opacity duration-500 group-hover/Img:opacity-100" />
         </a>
       )
     }
 
-    <div class="p-6 lg:p-8">
-      {name && <h3 class="mb-3 text-xl font-semibold lg:text-2xl">{name}</h3>}
+    <div class="relative p-7 lg:p-9">
+      <div
+        class="absolute left-0 top-0 h-1 w-20 rounded-r-full bg-linear-to-r from-third to-accent opacity-0 transition-all duration-500 group-hover:left-0 group-hover:h-1 group-hover:w-32 group-hover:opacity-100"
+      >
+      </div>
 
-      {description && <p class="text-text/70 mb-6 text-base leading-6">{description}</p>}
+      {
+        name && (
+          <h3 class="mb-4 text-2xl font-bold tracking-tight lg:text-3xl">
+            {name}
+          </h3>
+        )
+      }
+
+      {
+        description && (
+          <p class="text-text/80 mb-6 text-base leading-relaxed">
+            {description}
+          </p>
+        )
+      }
 
       {
         list?.items?.length ? (
           <>
-            <header class="mb-2 text-sm font-bold uppercase tracking-wide">{list.title}</header>
+            <header class="mb-3 text-sm font-bold uppercase tracking-widest text-third">
+              {list.title}
+            </header>
             <ul class="text-text/90 mb-6 list-disc space-y-2 pl-6 text-sm">
               {list.items.map((item) => (
-                <li class="text-text/70">
-                  <span class="text-text font-semibold">{item.highlight}:</span> {item.description}
+                <li class="text-text/70 transition-colors duration-300 hover:text-text">
+                  <span class="font-semibold text-accent">
+                    {item.highlight}:
+                  </span>{" "}
+                  {item.description}
                 </li>
               ))}
             </ul>
@@ -63,17 +94,24 @@ const { name, img, web, links, description, list, skills } = Astro.props
         ) : null
       }
 
-      <div class="mb-6 flex flex-wrap gap-2">
+      <div class="mb-6 flex flex-wrap gap-3">
         {
           links?.map((link) => (
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-main/60 border-text/50 text-text/80 hover:bg-main flex items-center justify-center rounded-full border px-3 py-1 text-sm transition-colors hover:scale-105"
+              class="group/btn relative flex items-center justify-center rounded-full border border-text/20 bg-main/50 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-third hover:bg-third/80 hover:shadow-lg hover:shadow-third/30"
             >
-              {link.icon && <img src={link.icon} alt={link.name} class="mr-2 inline h-4 w-4" />}
-              {link.name}
+              {link.icon && (
+                <img
+                  src={link.icon}
+                  alt={link.name}
+                  class="mr-2 inline h-4 w-4"
+                />
+              )}
+              <span class="relative z-10">{link.name}</span>
+              <div class="absolute inset-0 rounded-full bg-linear-to-r from-third to-accent opacity-0 transition-opacity duration-300 group-hover/btn:opacity-20" />
             </a>
           ))
         }
@@ -81,11 +119,17 @@ const { name, img, web, links, description, list, skills } = Astro.props
 
       {
         skills?.length ? (
-          <div class="mb-6 flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2">
             {skills.map((skill) => (
-              <span class="bg-third/70 hover:bg-third text-text/80 border-text/50 rounded-full border px-3 py-1 text-sm transition-transform hover:scale-105">
-                <img src={skill.icon} alt={skill.name} class="mr-2 inline h-4 w-4" />
-                {skill.name}
+              <span class="group/skill inline-flex items-center rounded-full border border-text/10 bg-second/30 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30 hover:shadow-md hover:shadow-accent/20">
+                {skill.icon && (
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    class="mr-2 inline h-3.5 w-3.5"
+                  />
+                )}
+                <span class="relative z-10">{skill.name}</span>
               </span>
             ))}
           </div>

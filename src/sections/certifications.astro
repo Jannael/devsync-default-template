@@ -1,40 +1,56 @@
 ---
-import { translations, type availableLangsType } from '@/devsync/fields-translations'
-import devsync, { defaultLang } from '@/devsync/devsync'
+import {
+  translations,
+  type availableLangsType,
+} from "@/devsync/fields-translations";
+import devsync, { defaultLang } from "@/devsync/devsync";
 
-const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
-const profile = devsync[lang] ?? devsync[defaultLang]
-const certifications = profile.certifications ?? []
-const translation = translations[lang]
+const lang = (
+  Astro.params.lang || defaultLang
+).toLowerCase() as availableLangsType;
+const profile = devsync[lang] ?? devsync[defaultLang];
+const certifications = profile.certifications ?? [];
+const translation = translations[lang];
 ---
 
 {
   certifications.length > 0 && (
-    <section class="relative m-auto flex h-fit w-full max-w-5xl flex-col items-center justify-center pb-20">
-      <h2 class="mb-16 text-xl lg:text-5xl">{translation['Certifications']}</h2>
-      <ul class="relative flex w-full flex-col items-center justify-center gap-20 px-10 lg:px-0">
+    <section class="relative m-auto flex h-fit w-full max-w-6xl flex-col items-center px-6 pb-24">
+      <div class="mb-16 text-center">
+        <h2 class="mb-4 text-3xl font-bold tracking-tight lg:text-5xl">
+          {translation["Certifications"]}
+        </h2>
+        <div class="section-divider mx-auto w-24" />
+      </div>
+      <ul class="relative flex w-full flex-col items-center justify-center gap-8">
         {certifications.map(({ name, url, list, skills }) => (
-          <li class="border-accent/40 border-l-3 rounded-xl px-10 py-4">
-            <article>
-              <div class="mb-3 flex flex-wrap items-center gap-3">
-                <h3 class="text-base font-semibold lg:text-lg">{name}</h3>
+          <li class="group relative w-full">
+            <article class="relative overflow-hidden rounded-3xl bg-main/40 p-8 shadow-lg shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-main/30 lg:p-10">
+              <div class="absolute left-0 top-0 h-full w-1.5 rounded-r-full bg-linear-to-b from-accent to-third opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div class="mb-6 flex flex-wrap items-center gap-4">
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold lg:text-2xl">{name}</h3>
+                </div>
                 {url && (
                   <a
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="bg-main/60 border-text/30 text-text/80 rounded-full border px-3 py-1 text-xs"
+                    class="relative flex items-center rounded-full border border-text/15 bg-accent/30 px-5 py-2.5 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/50 hover:shadow-lg hover:shadow-accent/20"
                   >
-                    {translation['View Certificate']}
+                    {translation["View Certificate"]}
                   </a>
                 )}
               </div>
 
               {list?.items?.length ? (
-                <ul class="text-text/80 mb-3 list-disc space-y-1 pl-5 text-sm">
+                <ul class="mb-6 list-disc space-y-2 pl-7 text-sm">
                   {list.items.map((item) => (
-                    <li>
-                      <span class="text-text font-medium">{item.highlight}:</span>{' '}
+                    <li class="text-text/70">
+                      <span class="font-semibold text-accent">
+                        {item.highlight}:
+                      </span>{" "}
                       {item.description}
                     </li>
                   ))}
@@ -44,9 +60,13 @@ const translation = translations[lang]
               {skills?.length ? (
                 <div class="flex flex-wrap gap-2">
                   {skills.map((skill) => (
-                    <span class="bg-third/60 text-text/80 border-text/30 rounded-full border px-3 py-1 text-xs">
+                    <span class="inline-flex items-center rounded-full border border-text/10 bg-second/20 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30">
                       {skill.icon && (
-                        <img src={skill.icon} alt={skill.name} class="mr-2 inline h-4 w-4" />
+                        <img
+                          src={skill.icon}
+                          alt={skill.name}
+                          class="mr-2 inline h-3.5 w-3.5"
+                        />
                       )}
                       {skill.name}
                     </span>
