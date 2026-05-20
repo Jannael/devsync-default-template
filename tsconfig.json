@@ -5,6 +5,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
+      "@core": ["./src/devsync/devsync"]
     }
   }
 }

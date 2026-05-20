@@ -1,5 +1,5 @@
 ---
-import devsync from "@/devsync/devsync";
+import devsync from "@core";
 import LangSwitcher from "@/sections/lang-switcher.astro";
 import ThemeSwitcher from "@/sections/theme-switcher.astro";
 
@@ -7,18 +7,31 @@ const fullName = devsync.name ?? "Portfolio";
 const firstName = fullName.split(" ")[0];
 ---
 
-<nav class="sticky top-0 z-50 w-full border-b border-border bg-main/80 backdrop-blur-md">
-  <div class="m-auto flex w-full max-w-4xl items-center justify-between px-6 py-4">
-    <a href="#" class="flex items-center gap-2 text-lg font-bold tracking-tight">
+<nav
+  class="sticky top-0 z-50 w-full border-b border-border bg-main/80 backdrop-blur-md"
+>
+  <div
+    class="m-auto flex w-full max-w-4xl items-center justify-between px-6 py-4"
+  >
+    <a
+      href="#"
+      class="flex items-center gap-2 text-lg font-bold tracking-tight"
+    >
       <span class="text-accent">✦</span>
       {firstName}
     </a>
 
     <div class="hidden items-center gap-8 md:flex">
-      <a href="#experience" class="text-sm font-medium text-text-secondary transition-colors hover:text-accent">
+      <a
+        href="#experience"
+        class="text-sm font-medium text-text-secondary transition-colors hover:text-accent"
+      >
         Experiencia
       </a>
-      <a href="#projects" class="text-sm font-medium text-text-secondary transition-colors hover:text-accent">
+      <a
+        href="#projects"
+        class="text-sm font-medium text-text-secondary transition-colors hover:text-accent"
+      >
         Proyectos
       </a>
     </div>

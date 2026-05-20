@@ -3,7 +3,7 @@ import {
   translations,
   type availableLangsType,
 } from "@/devsync/fields-translations";
-import devsync, { defaultLang } from "@/devsync/devsync";
+import devsync, { defaultLang } from "@core";
 
 const lang = (
   Astro.params.lang || defaultLang
@@ -25,7 +25,7 @@ const translation = translations[lang];
       <ul class="space-y-6">
         {certifications.map(({ name, url, list, skills }) => (
           <li class="card group relative overflow-hidden p-6 transition-all duration-300">
-            <div class="absolute left-0 top-0 h-full w-1 bg-accent"></div>
+            <div class="absolute left-0 top-0 h-full w-1 bg-accent" />
 
             <div class="mb-4 flex flex-wrap items-center gap-4">
               <div class="flex-1">
@@ -47,7 +47,8 @@ const translation = translations[lang];
               <ul class="mb-4 space-y-1.5 pl-4">
                 {list.items.map((item) => (
                   <li class="text-sm text-text-secondary">
-                    <span class="font-medium text-text">{item.highlight}:</span> {item.description}
+                    <span class="font-medium text-text">{item.highlight}:</span>{" "}
+                    {item.description}
                   </li>
                 ))}
               </ul>
@@ -57,7 +58,13 @@ const translation = translations[lang];
               <div class="flex flex-wrap gap-2">
                 {skills.map((skill) => (
                   <span class="inline-flex items-center rounded-full border border-border bg-main px-2.5 py-1 text-xs font-medium">
-                    {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3" />}
+                    {skill.icon && (
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        class="mr-1.5 inline h-3 w-3"
+                      />
+                    )}
                     {skill.name}
                   </span>
                 ))}

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import devsync from '@/devsync/devsync'
+import devsync from '@core'
 
 export const GET: APIRoute = async () => {
   const siteName = devsync.name

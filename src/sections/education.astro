@@ -3,7 +3,7 @@ import {
   translations,
   type availableLangsType,
 } from "@/devsync/fields-translations";
-import devsync, { defaultLang } from "@/devsync/devsync";
+import devsync, { defaultLang } from "@core";
 
 const lang = (
   Astro.params.lang || defaultLang
@@ -25,7 +25,7 @@ const translation = translations[lang];
       <ul class="space-y-6">
         {education.map(({ name, degree, img, date, links, list }) => (
           <li class="card group relative overflow-hidden p-6 transition-all duration-300">
-            <div class="absolute left-0 top-0 h-full w-1 bg-accent"></div>
+            <div class="absolute left-0 top-0 h-full w-1 bg-accent" />
 
             <div class="mb-4 flex flex-wrap items-center gap-4">
               {img && (
@@ -52,7 +52,8 @@ const translation = translations[lang];
               <ul class="mb-4 space-y-1.5 pl-4">
                 {list.items.map((item) => (
                   <li class="text-sm text-text-secondary">
-                    <span class="font-medium text-text">{item.highlight}:</span> {item.description}
+                    <span class="font-medium text-text">{item.highlight}:</span>{" "}
+                    {item.description}
                   </li>
                 ))}
               </ul>
@@ -67,7 +68,13 @@ const translation = translations[lang];
                     rel="noopener noreferrer"
                     class="inline-flex items-center text-sm font-medium text-text-secondary underline underline-offset-2 transition-colors hover:text-accent"
                   >
-                    {link.icon && <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5" />}
+                    {link.icon && (
+                      <img
+                        src={link.icon}
+                        alt={link.name}
+                        class="mr-1.5 inline h-3.5 w-3.5"
+                      />
+                    )}
                     {link.name}
                   </a>
                 ))}

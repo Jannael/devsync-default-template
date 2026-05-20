@@ -1,24 +1,33 @@
 ---
-import devsync from '@/devsync/devsync'
-import { defaultLang } from '@/devsync/devsync'
-import { translations, type availableLangsType } from '@/devsync/fields-translations'
-import TimelineItem from '@/components/timeline-item.astro'
+import devsync from "@core";
+import { defaultLang } from "@core";
+import {
+  translations,
+  type availableLangsType,
+} from "@/devsync/fields-translations";
+import TimelineItem from "@/components/timeline-item.astro";
 
-const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
-const profile = devsync[lang] ?? devsync[defaultLang]
-const experience = profile.experience ?? []
-const translation = translations[lang]
+const lang = (
+  Astro.params.lang || defaultLang
+).toLowerCase() as availableLangsType;
+const profile = devsync[lang] ?? devsync[defaultLang];
+const experience = profile.experience ?? [];
+const translation = translations[lang];
 ---
 
 {
   experience.length > 0 && (
-    <section id="experience" class="relative m-auto w-full max-w-4xl px-6 py-16">
+    <section
+      id="experience"
+      class="relative m-auto w-full max-w-4xl px-6 py-16"
+    >
       <div class="mb-12">
         <h2 class="mb-2 inline-block rounded bg-accent-light px-3 py-1 text-2xl font-bold lg:text-3xl">
-          {translation['Professional Experience']}
+          {translation["Professional Experience"]}
         </h2>
         <span class="ml-3 text-lg text-text-secondary">
-          ↝ {experience.length} {experience.length === 1 ? 'año' : 'años'} de Experiencia
+          ↝ {experience.length} {experience.length === 1 ? "año" : "años"} de
+          Experiencia
         </span>
       </div>
 

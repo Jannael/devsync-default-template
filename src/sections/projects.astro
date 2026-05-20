@@ -1,13 +1,18 @@
 ---
-import devsync from '@/devsync/devsync'
-import { defaultLang } from '@/devsync/devsync'
-import { translations, type availableLangsType } from '@/devsync/fields-translations'
-import ProjectCard from '@/components/project-card.astro'
+import devsync from "@core";
+import { defaultLang } from "@core";
+import {
+  translations,
+  type availableLangsType,
+} from "@/devsync/fields-translations";
+import ProjectCard from "@/components/project-card.astro";
 
-const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
-const profile = devsync[lang] ?? devsync[defaultLang]
-const projects = profile.projects ?? []
-const translation = translations[lang]
+const lang = (
+  Astro.params.lang || defaultLang
+).toLowerCase() as availableLangsType;
+const profile = devsync[lang] ?? devsync[defaultLang];
+const projects = profile.projects ?? [];
+const translation = translations[lang];
 ---
 
 {
@@ -15,14 +20,24 @@ const translation = translations[lang]
     <section id="projects" class="relative m-auto w-full max-w-4xl px-6 py-16">
       <div class="mb-12">
         <h2 class="mb-2 inline-block rounded bg-accent-light px-3 py-1 text-2xl font-bold lg:text-3xl">
-          {translation['Projects']}
+          {translation["Projects"]}
         </h2>
       </div>
 
       <ul class="grid gap-6 md:grid-cols-2">
-        {projects.map(({ name, img, web, links, description, list, skills }) => (
-          <ProjectCard {name} {img} {web} {links} {description} {list} {skills} />
-        ))}
+        {projects.map(
+          ({ name, img, web, links, description, list, skills }) => (
+            <ProjectCard
+              {name}
+              {img}
+              {web}
+              {links}
+              {description}
+              {list}
+              {skills}
+            />
+          ),
+        )}
       </ul>
     </section>
   )

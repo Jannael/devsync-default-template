@@ -53,8 +53,8 @@ tsconfig.json        # TypeScript config (extends astro/tsconfigs/strict)
 **Frontmatter (server-side)**:
 ```astro
 ---
-import devsync from '@/devsync/devsync'  // Use @ path alias
-import { defaultLang } from '@/devsync/devsync'
+import devsync from '@core'  // Use @ path alias
+import { defaultLang } from '@core'
 import type { availableLangsType } from '@/devsync/fields-translations'
 
 const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
@@ -120,7 +120,7 @@ interface Props {
 // Use @ path alias (configured in tsconfig.json)
 import Layout from '@/layouts/layout.astro'
 import ProjectCard from '@/components/project-card.astro'
-import { defaultLang } from '@/devsync/devsync'
+import { defaultLang } from '@core'
 
 // External packages
 import { z } from 'zod'
