@@ -10,7 +10,7 @@ const firstName = devsync.name?.split(" ")[0];
 
 <section class="relative m-auto w-full max-w-4xl px-6 py-16 lg:py-24">
   <div
-    class="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:gap-16"
+    class="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16"
   >
     <div class="relative shrink-0">
       {
@@ -32,7 +32,8 @@ const firstName = devsync.name?.split(" ")[0];
       }
     </div>
 
-    <div class="flex-1">
+    <div class="flex-1 md:text-left">
+      <div class="mx-auto max-w-lg md:mx-0">
       <h1 class="mb-3 text-4xl font-extrabold tracking-tight lg:text-6xl">
         {devsync.name}
       </h1>
@@ -40,7 +41,7 @@ const firstName = devsync.name?.split(" ")[0];
         <span class="highlight">{profile.jobTitle}</span>
       </h2>
       <p
-        class="mb-8 max-w-lg text-base leading-relaxed text-text-secondary lg:text-lg"
+        class="mb-8 text-base leading-relaxed text-text-secondary lg:text-lg"
       >
         {profile.description}
       </p>
@@ -59,6 +60,7 @@ const firstName = devsync.name?.split(" ")[0];
           </ul>
         )
       }
+      </div>
     </div>
   </div>
 </section>
