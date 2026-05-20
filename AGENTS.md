@@ -2,58 +2,62 @@
 
 ## Project Overview
 
-This is an Astro-based portfolio/profile template with i18n support, Tailwind CSS styling, and Zod validation. The project uses **Bun** as package manager and requires **Node.js >= 22.12.0**.
+Astro 6 static site generator for multilingual portfolio/profile pages. Tailwind CSS 4 (via `@tailwindcss/vite`), Zod validation, Bun package manager. Node.js >= 22.12.0 required.
 
----
-
-## Build Commands
+## Commands
 
 ```bash
-bun run dev        # Start development server
-bun run build      # Build for production
-bun run preview    # Preview production build
-bun run astro      # Run Astro CLI (e.g., astro check)
+bun run dev        # Dev server
+bun run build      # Production build (only verification step — no lint/test)
+bun run preview    # Preview build output
+bun run astro      # Direct Astro CLI access
 ```
 
-> **Note**: There are no lint or test scripts configured. Run `bun run build` to verify changes compile correctly.
+CI auto-generates CV/README/LinkedIn artifacts on every `DEVSYNC.json` push via `bunx @jannael/devsync build`.
 
----
-
-## Project Structure
+## Architecture
 
 ```
 src/
-├── components/       # Reusable UI components (*.astro files)
-├── layouts/         # Page layouts (layout.astro)
-├── pages/           # Routes, including [lang]/ for i18n pages
-├── sections/        # Page sections (hero, projects, experience, etc.)
-├── styles/          # Global CSS (global.css with Tailwind)
-└── devsync/         # Data layer and validation
-    ├── devsync.ts           # Main export, loads DEVSYNC.json
-    ├── devsync-validator.ts # Zod schemas and types
-    └── fields-translations.ts # i18n field translations
-DEVSYNC.json         # Profile data (the only file users should edit)
-astro.config.mjs     # Astro configuration
-tsconfig.json        # TypeScript config (extends astro/tsconfigs/strict)
+├── components/       # badge, info-card, navbar, project-card, timeline-item
+├── layouts/          # layout.astro (SEO, structured data, theme toggle)
+├── pages/            # index.astro (root redirect), [lang]/index.astro, [lang]/cv.astro
+├── sections/         # hero, experience, projects, education, certifications, footer, lang-switcher, theme-switcher
+├── styles/           # global.css (Tailwind @theme vars + custom classes)
+└── devsync/          # devsync.ts (entry), devsync-validator.ts (Zod), fields-translations.ts (i18n)
 ```
 
----
+**Path aliases** (`tsconfig.json`):
+- `@/*` → `src/*`
+- `@core` → `src/devsync/devsync`
 
-## Code Style Guidelines
+## Data Flow
 
-### TypeScript
+1. `DEVSYNC.json` is the single source of truth — root-level fields are global (`name`, `img`, `socialMedia`, `site`, `githubUserName`, `defaultLang`), locale keys (`en`, `es`) hold translated content.
+2. `src/devsync/devsync.ts` loads + validates via `parseDevsync()` (Zod `deepPartial()`), exports `languages` array derived from non-global keys.
+3. Every page/section imports from `@core`, resolves `lang` from `Astro.params.lang ?? defaultLang`, falls back: `devsync[lang] ?? devsync[defaultLang]`.
 
-- Use strict TypeScript (project extends `astro/tsconfigs/strict`)
-- Define explicit types for all Props interfaces
-- Prefer `interface` over `type` for object shapes
-- Use Zod schemas for runtime validation (devsync-validator.ts)
+## i18n
 
-### Astro Components
+Routing: prefix on all locales including default (`prefixDefaultLocale: true`, `redirectToDefaultLocale: true`).
+Translation keys live in `fields-translations.ts` — add new keys to both `en` and `es` objects.
+`localeMap` maps lang codes to OG locale strings (`en_US`, `es_ES`).
 
-**Frontmatter (server-side)**:
+## CSS / Theming
+
+Tailwind 4 custom theme vars in `global.css`:
+- `--color-main`, `--color-text`, `--color-text-secondary`, `--color-accent`, `--color-accent-light`, `--color-border`
+
+Dark mode: `.dark` class on `<html>`, persisted in `localStorage`, respects `prefers-color-scheme`.
+Custom classes: `.highlight`, `.text-gradient`, `.card`, `.timeline-line`, `.timeline-dot`, `.section-divider`.
+Icons in `/icons/` are auto-themed via CSS `filter: brightness(0)` / `invert(1)` in dark mode.
+
+## Component Patterns
+
+**Frontmatter boilerplate**:
 ```astro
 ---
-import devsync from '@core'  // Use @ path alias
+import devsync from '@core'
 import { defaultLang } from '@core'
 import type { availableLangsType } from '@/devsync/fields-translations'
 
@@ -62,153 +66,25 @@ const profile = devsync[lang] ?? devsync[defaultLang]
 ---
 ```
 
-**Template**:
-- Use `{expression}` for dynamic values
-- Use `{condition && (<component />)}` for conditional rendering
-- Use `{array.map((item) => (<component {item} />))}` for lists
-- Always provide `key` props when mapping (implicit in Astro)
-- Access nested properties safely: `obj?.nested?.property ?? defaultValue`
+**Props**: always `interface Props` with optional fields (`?`). Use `Astro.props` destructuring.
+**Conditional rendering**: `{items?.length ? (...) : null}`
+**Lists**: `{array.map((item) => (<Component {...item} />))}`
+**InfoCard** (`info-card.astro`): shared by experience + projects sections. Supports `expand` prop for single-item layouts.
+**Badge** (`badge.astro`): icon + text pill for social links. Icons need `shrink-0` to prevent flex misalignment.
 
-### Props Interfaces
+## Zod Validation
 
-```typescript
-interface Props {
-  name?: string           // Optional props with ?
-  url?: string
-  icon?: string
-  items?: {               // Nested objects also optional
-    label: string
-    value: string
-  }[]
-}
-```
+All schemas in `devsync-validator.ts`. `devsyncSchema` uses `.catchall(devsyncObjectSchema.deepPartial())` so locale sections are optional. Never mutate schema — add fields there if DEVSYNC.json structure changes.
 
-### Conditional Rendering Pattern
+## SEO
 
-```astro
-{
-  items?.length ? (
-    <ul>
-      {items.map((item) => (
-        <li>{item.label}</li>
-      ))}
-    </ul>
-  ) : null
-}
-```
+Layout auto-generates: canonical URL, OG tags, Twitter cards, JSON-LD (Person + WebSite graph). Requires `site` in `DEVSYNC.json` or `astro.config.mjs` for correct canonicals. OG image: `/logo-og.png` (1254x1254).
 
----
+## Conventions
 
-## Naming Conventions
-
-| Element | Convention | Example |
-|---------|------------|---------|
-| Components | PascalCase | `ProjectCard.astro`, `InfoCard.astro` |
-| Props | camelCase | `projectName`, `imageUrl` |
-| Props interfaces | `Props` suffix | `interface Props { name?: string }` |
-| Variables | camelCase | `const profile = devsync[lang]` |
-| CSS classes | Tailwind kebab-case | `class="mb-6 text-lg"` |
-| Zod schemas | PascalCase | `LinkSchema`, `ExperienceSchema` |
-| Types | PascalCase | `Link`, `DevsyncPartial` |
-
----
-
-## Import Conventions
-
-```astro
----
-// Use @ path alias (configured in tsconfig.json)
-import Layout from '@/layouts/layout.astro'
-import ProjectCard from '@/components/project-card.astro'
-import { defaultLang } from '@core'
-
-// External packages
-import { z } from 'zod'
-import '@fontsource-variable/jost'
-
-// CSS
-import '@/styles/global.css'
----
-```
-
----
-
-## Error Handling
-
-- Use Zod for data validation (devsync-validator.ts)
-- Provide fallback values: `profile.experience ?? []`
-- Use optional chaining: `obj?.property?.nested`
-- Never expose raw error messages to users
-
----
-
-## CSS/Tailwind Guidelines
-
-- Use Tailwind utility classes in `.astro` files
-- Define custom colors in `src/styles/global.css` using CSS variables under `@theme`
-- Dark mode uses `.dark` class on `<html>`, toggle via JavaScript
-- Use `bg-main`, `text-text`, `border-third` etc. (custom theme colors)
-- Avoid arbitrary values; prefer existing Tailwind scale
-- Use `backdrop-blur-sm` and `shadow-*` for glassmorphism effects
-- Use `transition-*` and `hover:*` for micro-interactions
-
----
-
-## i18n Pattern
-
-```typescript
-// src/devsync/fields-translations.ts
-export const translations = {
-  en: { 'Projects': 'Projects', 'Experience': 'Experience' },
-  es: { 'Projects': 'Proyectos', 'Experience': 'Experiencia' },
-} as const
-
-export type availableLangsType = keyof typeof translations
-```
-
-Access via: `const translation = translations[lang]` then `translation['Projects']`
-
----
-
-## Data Model (DEVSYNC.json)
-
-The `DEVSYNC.json` file is the single source of truth for profile data. Structure:
-
-```json
-{
-  "defaultLang": "en",
-  "name": "Full Name",
-  "img": "https://...",
-  "site": "https://...",
-  "githubUserName": "username",
-  "socialMedia": [{ "name", "url", "icon", "mdBadge" }],
-  "en": {
-    "jobTitle": "Title",
-    "description": "Bio text",
-    "experience": [{ "company", "position", "img", "web", "date", "links", "description", "list", "skills" }],
-    "projects": [{ "name", "img", "web", "links", "description", "list", "skills" }],
-    "education": [{ "name", "degree", "img", "date", "links", "list" }],
-    "certifications": [{ "name", "url", "list", "skills" }]
-  }
-}
-```
-
----
-
-## Accessibility
-
-- Always include `alt` text for images
-- Use semantic HTML (`<section>`, `<article>`, `<nav>`, `<main>`, `<footer>`)
-- Include `aria-label` on icon-only buttons
-- Use `rel="noopener noreferrer"` on external links
-
----
-
-## File Creation Guidelines
-
-- Create new components in `src/components/`
-- Create new sections in `src/sections/`
-- Use existing patterns (InfoCard, ProjectCard, Badge) as templates
-- Follow the Props interface pattern with optional fields
-- Don't add comments unless explicitly requested
-- Ensure responsive design (mobile-first, test `lg:` breakpoints)
+- Components/sections: PascalCase filenames, lowercase in imports (`import Layout from '@/layouts/layout.astro'`)
+- No comments unless explicitly requested
+- Always guard array access: `profile.experience ?? []`, `items?.length`
+- Responsive: mobile-first, `lg:` breakpoint for desktop
+- External links: `target="_blank" rel="noopener noreferrer"`
+- Images: always include `alt`
