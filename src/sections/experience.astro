@@ -26,8 +26,7 @@ const translation = translations[lang];
           {translation["Professional Experience"]}
         </h2>
         <span class="ml-3 text-lg text-text-secondary">
-          ↝ {experience.length} {experience.length === 1 ? "año" : "años"} de
-          Experiencia
+          ↝ {experience.length + ' '} {experience.length === 1 ? translation["year of experience"] : translation["years of experience"]}
         </span>
       </div>
 

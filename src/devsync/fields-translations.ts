@@ -20,6 +20,8 @@ export const translations = {
     'Github Profile': 'Github Profile',
     'I am': 'I am',
     Links: 'Links',
+    'years of experience': 'years of experience',
+    'year of experience': 'year of experience',
   },
   es: {
     Description: 'Descripción',
@@ -40,6 +42,8 @@ export const translations = {
     'Github Profile': 'Perfil de Github',
     'I am': 'Soy',
     Links: 'Enlaces',
+    'years of experience': 'años de experiencia',
+    'year of experience': 'año de experiencia',
   },
 } as const
 
