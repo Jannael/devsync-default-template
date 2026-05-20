@@ -12,12 +12,14 @@ const translation = translations[lang]
 
 {
   projects.length > 0 && (
-    <section class="relative m-auto flex h-fit w-full max-w-6xl flex-col items-center justify-center px-6 lg:pb-24">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold tracking-tight lg:text-5xl">{translation['Projects']}</h2>
-        <div class="section-divider mx-auto w-24" />
+    <section id="projects" class="relative m-auto w-full max-w-4xl px-6 py-16">
+      <div class="mb-12">
+        <h2 class="mb-2 inline-block rounded bg-accent-light px-3 py-1 text-2xl font-bold lg:text-3xl">
+          {translation['Projects']}
+        </h2>
       </div>
-      <ul class="relative flex w-full flex-wrap justify-center gap-8 lg:gap-10">
+
+      <ul class="grid gap-6 md:grid-cols-2">
         {projects.map(({ name, img, web, links, description, list, skills }) => (
           <ProjectCard {name} {img} {web} {links} {description} {list} {skills} />
         ))}

@@ -27,114 +27,64 @@ interface Props {
 const { name, img, web, links, description, list, skills } = Astro.props;
 ---
 
-<li class="group relative mb-10 w-full lg:mb-0">
-  <article
-    class="relative overflow-hidden rounded-3xl bg-main/30 shadow-xl shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-main/40"
-  >
-    {
-      img && (
-        <a
-          href={web ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group/img relative block overflow-hidden"
-        >
-          <img
-            src={img}
-            alt={name ?? "Project preview"}
-            class="h-56 w-full object-cover transition-transform duration-700 group-hover/Img:scale-110 lg:h-64"
-            width="1200"
-            height="675"
-          />
-          <div class="absolute inset-0 bg-linear-to-t from-main/80 via-main/20 to-transparent opacity-60 transition-opacity duration-500 group-hover/Img:opacity-80" />
-          <div class="absolute inset-0 bg-linear-to-r from-third/20 to-accent/20 opacity-0 transition-opacity duration-500 group-hover/Img:opacity-100" />
-        </a>
-      )
-    }
-
-    <div class="relative p-7 lg:p-9">
-      <div
-        class="absolute left-0 top-0 h-1 w-20 rounded-r-full bg-linear-to-r from-third to-accent opacity-0 transition-all duration-500 group-hover:left-0 group-hover:h-1 group-hover:w-32 group-hover:opacity-100"
+<li class="group">
+  <article class="card overflow-hidden transition-all duration-300">
+    {img && (
+      <a
+        href={web ?? "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block overflow-hidden"
       >
-      </div>
+        <img
+          src={img}
+          alt={name ?? "Project preview"}
+          class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          width="800"
+          height="450"
+        />
+      </a>
+    )}
 
-      {
-        name && (
-          <h3 class="mb-4 text-2xl font-bold tracking-tight lg:text-3xl">
-            {name}
-          </h3>
-        )
-      }
+    <div class="p-6">
+      {name && (
+        <h3 class="mb-3 text-xl font-bold">
+          {name}
+        </h3>
+      )}
 
-      {
-        description && (
-          <p class="text-text/80 mb-6 text-base leading-relaxed">
-            {description}
-          </p>
-        )
-      }
+      {description && (
+        <p class="mb-4 text-sm leading-relaxed text-text-secondary">
+          {description}
+        </p>
+      )}
 
-      {
-        list?.items?.length ? (
-          <>
-            <header class="mb-3 text-sm font-bold uppercase tracking-widest text-third">
-              {list.title}
-            </header>
-            <ul class="text-text/90 mb-6 list-disc space-y-2 pl-6 text-sm">
-              {list.items.map((item) => (
-                <li class="text-text/70 transition-colors duration-300 hover:text-text">
-                  <span class="font-semibold text-accent">
-                    {item.highlight}:
-                  </span>{" "}
-                  {item.description}
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null
-      }
-
-      <div class="mb-6 flex flex-wrap gap-3">
-        {
-          links?.map((link) => (
+      {links?.length && (
+        <div class="mb-4 flex flex-wrap gap-2">
+          {links.map((link) => (
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="group/btn relative flex items-center justify-center rounded-full border border-text/20 bg-main/50 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-third hover:bg-third/80 hover:shadow-lg hover:shadow-third/30"
+              class="inline-flex items-center rounded-lg border border-border bg-main px-3 py-1.5 text-xs font-medium transition-all duration-300 hover:border-accent hover:text-accent"
             >
-              {link.icon && (
-                <img
-                  src={link.icon}
-                  alt={link.name}
-                  class="mr-2 inline h-4 w-4"
-                />
-              )}
-              <span class="relative z-10">{link.name}</span>
-              <div class="absolute inset-0 rounded-full bg-linear-to-r from-third to-accent opacity-0 transition-opacity duration-300 group-hover/btn:opacity-20" />
+              {link.icon && <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5" />}
+              {link.name}
             </a>
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      )}
 
-      {
-        skills?.length ? (
-          <div class="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span class="group/skill inline-flex items-center rounded-full border border-text/10 bg-second/30 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30 hover:shadow-md hover:shadow-accent/20">
-                {skill.icon && (
-                  <img
-                    src={skill.icon}
-                    alt={skill.name}
-                    class="mr-2 inline h-3.5 w-3.5"
-                  />
-                )}
-                <span class="relative z-10">{skill.name}</span>
-              </span>
-            ))}
-          </div>
-        ) : null
-      }
+      {skills?.length && (
+        <div class="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span class="inline-flex items-center rounded-full border border-border bg-main px-2.5 py-1 text-xs font-medium">
+              {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3" />}
+              {skill.name}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   </article>
 </li>

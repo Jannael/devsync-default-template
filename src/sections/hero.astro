@@ -2,81 +2,63 @@
 import Badge from "@/components/badge.astro";
 import devsync from "@/devsync/devsync";
 import { defaultLang } from "@/devsync/devsync";
-import LangSwitcher from "@/sections/lang-switcher.astro";
-import ThemeSwitcher from "@/sections/theme-switcher.astro";
 
 const lang = (Astro.params.lang || defaultLang).toLowerCase();
 const profile = devsync[lang] ?? devsync[defaultLang];
+const firstName = devsync.name?.split(" ")[0];
 ---
 
-<section
-  class="relative m-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-6"
->
-  <div
-    class="absolute left-0 top-0 flex w-full items-center justify-end gap-4 pt-8"
-  >
-    <LangSwitcher currentLang={lang} class="mb-0" />
-    <ThemeSwitcher />
-  </div>
-
-  <main
-    class="flex flex-col items-center justify-center gap-8 pb-20 lg:flex-row lg:gap-16"
-  >
-    <div class="lg:order-0 order-1 w-full text-center lg:flex-1 lg:text-start">
-      <h1 class="mb-6 text-4xl font-bold tracking-tight lg:text-7xl">
-        {devsync.name}
-      </h1>
-      <h2
-        class="mb-6 text-xl font-medium tracking-wide lg:text-2xl text-accent"
-      >
-        {profile.jobTitle}
-      </h2>
-      <p
-        class="text-text/75 mb-10 max-w-xl text-base leading-relaxed lg:text-lg lg:leading-loose"
-      >
-        {profile.description}
-      </p>
-      {
-        devsync.socialMedia && devsync.socialMedia.length > 0 && (
-          <ul class="flex w-full items-center justify-center gap-4 pl-0 lg:w-fit lg:justify-start">
-            {devsync.socialMedia.map((social) => (
-              <Badge
-                name={social.name}
-                url={social.url}
-                icon={social.icon}
-                bg="bg-second"
-                text="text-main"
-              />
-            ))}
-            <Badge
-              name="cv"
-              url={"/CV-" + lang + ".pdf"}
-              icon="/icons/cv.svg"
-              bg="bg-accent"
-              text="text-main"
-            />
-          </ul>
-        )
-      }
-    </div>
-
-    {
-      devsync.img && devsync.img.length > 1 && (
-        <div class="lg:order-1 order-0 relative">
-          <div class="absolute inset-0 animate-pulse rounded-full bg-linear-to-r from-third to-accent opacity-30 blur-3xl" />
-          <div class="absolute -inset-4 rounded-full bg-linear-to-r from-third/20 to-accent/20 opacity-50" />
+<section class="relative m-auto w-full max-w-4xl px-6 py-16 lg:py-24">
+  <div class="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:gap-16">
+    <div class="relative flex-shrink-0">
+      {devsync.img && devsync.img.length > 1 && (
+        <div class="relative">
           <img
             src={devsync.img}
-            alt={devsync.name + " " + profile.jobTitle}
-            class="relative z-10 mb-8 w-48 rounded-full lg:mb-0 lg:w-80"
-            style="mask-image: radial-gradient(circle, black 40%, transparent 70%);"
-            width="320"
-            height="320"
+            alt={devsync.name}
+            class="relative z-10 h-32 w-32 rounded-full border-2 border-accent object-cover lg:h-40 lg:w-40"
+            width="160"
+            height="160"
             loading="eager"
           />
+          <div class="absolute -right-4 -top-4 z-20 rotate-12 rounded bg-accent-light px-3 py-1 text-xs font-bold text-accent shadow-sm">
+            {firstName}
+          </div>
+          <svg class="absolute -left-8 top-4 z-20 h-12 w-12 text-text" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 40c4-8 12-16 20-20s16-4 20-4" stroke-linecap="round" />
+            <path d="M44 16l4-4-4-4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </div>
-      )
-    }
-  </main>
+      )}
+    </div>
 
+    <div class="flex-1">
+      <h1 class="mb-3 text-4xl font-extrabold tracking-tight lg:text-6xl">
+        {devsync.name}
+      </h1>
+      <h2 class="mb-4 text-xl font-medium lg:text-2xl">
+        <span class="highlight">{profile.jobTitle}</span>
+      </h2>
+      <p class="mb-8 max-w-lg text-base leading-relaxed text-text-secondary lg:text-lg">
+        {profile.description}
+      </p>
+
+      {devsync.socialMedia && devsync.socialMedia.length > 0 && (
+        <ul class="flex flex-wrap items-center gap-3">
+          {devsync.socialMedia.map((social) => (
+            <Badge
+              name={social.name}
+              url={social.url}
+              icon={social.icon}
+            />
+          ))}
+          <Badge
+            name="CV"
+            url={"/CV-" + lang + ".pdf"}
+            icon="/icons/cv.svg"
+          />
+        </ul>
+      )}
+    </div>
+  </div>
 </section>

@@ -1,13 +1,11 @@
 ---
 interface Props {
-  name: string
-  url: string
-  icon: string
-  bg?: string
-  text?: string
+  name: string;
+  url: string;
+  icon: string;
 }
 
-const { name, url, icon, bg, text } = Astro.props
+const { name, url, icon } = Astro.props;
 ---
 
 <li class="group">
@@ -15,10 +13,9 @@ const { name, url, icon, bg, text } = Astro.props
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    class="relative flex items-center gap-3 rounded-full border border-text/15 bg-main/50 px-5 py-3 shadow-lg shadow-main/10 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-third hover:bg-main/80 hover:shadow-xl hover:shadow-third/20"
+    class="inline-flex items-center gap-2 rounded-lg border border-border bg-main px-4 py-2 text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent"
   >
-    <img src={icon} alt={name} class="h-6 w-6" width="24" height="24" />
-    {name && <span class={`text-sm font-medium ${text} pr-1 text-text`}>{name}</span>}
-    <div class="absolute inset-0 rounded-full bg-linear-to-r from-third/20 to-accent/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    <img src={icon} alt={name} class="h-4 w-4" width="16" height="16" />
+    {name && <span>{name}</span>}
   </a>
 </li>

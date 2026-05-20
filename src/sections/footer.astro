@@ -6,41 +6,27 @@ const year = new Date().getFullYear();
 const socialMedia = devsync.socialMedia ?? [];
 ---
 
-<footer
-  class="border-text/10 mt-16 border-t border-accent/20 bg-main/30 backdrop-blur-sm"
->
-  <div
-    class="m-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 lg:flex-row"
-  >
+<footer class="mt-16 border-t border-border">
+  <div class="m-auto flex w-full max-w-4xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row">
     <div class="flex items-center gap-3">
-      <img
-        src="/logo-192-black.webp"
-        alt="Devsync logo"
-        width="20"
-        height="20"
-        class="footer-logo h-5 w-5 rounded-sm"
-      />
-      <span class="text-text/60 text-sm">{year} {fullName}</span>
-      <span class="text-text/30">·</span>
-      <span class="text-text/50 text-sm">Built with Devsync</span>
+      <span class="text-sm text-text-secondary">{year} {fullName}</span>
+      <span class="text-text-secondary">·</span>
+      <span class="text-sm text-text-secondary">Built with Devsync</span>
     </div>
 
-    {
-      socialMedia.length > 0 && (
-        <div class="flex flex-wrap items-center gap-5">
-          {socialMedia.slice(0, 3).map((social) => (
-            <a
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group relative text-sm text-text/60 transition-colors hover:text-accent"
-            >
-              {social.name}
-              <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-linear-to-r from-third to-accent transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
-        </div>
-      )
-    }
+    {socialMedia.length > 0 && (
+      <div class="flex flex-wrap items-center gap-5">
+        {socialMedia.slice(0, 3).map((social) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-text-secondary underline underline-offset-4 transition-colors hover:text-accent"
+          >
+            {social.name}
+          </a>
+        ))}
+      </div>
+    )}
   </div>
 </footer>

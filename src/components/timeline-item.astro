@@ -1,0 +1,79 @@
+---
+interface Props {
+  company?: string;
+  position?: string;
+  img?: string;
+  web?: string;
+  date?: string;
+  links?: {
+    name?: string;
+    url?: string;
+    mdBadge?: string;
+    icon?: string;
+  }[];
+  description?: string;
+  list?: {
+    title?: string;
+    items?: {
+      highlight?: string;
+      description?: string;
+    }[];
+  };
+  skills?: {
+    name?: string;
+    mdBadge?: string;
+    icon?: string;
+  }[];
+  index?: number;
+  isLast?: boolean;
+}
+
+const { company, position, img, web, date, links, description, list, skills, index, isLast } = Astro.props;
+---
+
+<li class="relative pl-12 pb-12 {isLast ? '' : 'border-l-2 border-border'} ml-4">
+  <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-accent ring-4 ring-main"></div>
+
+  <div class="mb-3">
+    {date && (
+      <span class="inline-block rounded-lg border-2 border-text bg-main px-4 py-2 text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        {date}
+      </span>
+    )}
+  </div>
+
+  <div class="mb-4">
+    {position && company && (
+      <h3 class="text-xl font-bold">
+        {position} en <span class="text-accent">{company}</span>
+      </h3>
+    )}
+  </div>
+
+  {description && (
+    <p class="mb-4 text-sm leading-relaxed text-text-secondary">
+      {description}
+    </p>
+  )}
+
+  {list?.items?.length && (
+    <ul class="mb-4 space-y-2">
+      {list.items.map((item) => (
+        <li class="text-sm text-text-secondary">
+          <span class="font-semibold text-text">{item.highlight}:</span> {item.description}
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {skills?.length && (
+    <div class="flex flex-wrap gap-2">
+      {skills.map((skill) => (
+        <span class="inline-flex items-center rounded-full border border-border bg-main px-3 py-1 text-xs font-medium">
+          {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3" />}
+          {skill.name}
+        </span>
+      ))}
+    </div>
+  )}
+</li>

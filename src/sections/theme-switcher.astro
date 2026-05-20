@@ -9,23 +9,23 @@ const { class: className } = Astro.props
 <button
   id="theme-switcher"
   type="button"
-  class={`${className} group relative flex h-11 w-11 items-center justify-center rounded-full border border-text/15 bg-main/50 shadow-lg shadow-main/10 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-third hover:shadow-xl hover:shadow-third/20`}
+  class="group flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-main transition-all duration-300 hover:border-accent hover:text-accent"
   aria-label="Toggle theme"
   aria-pressed="false"
 >
   <img
     src="/icons/moon.svg"
     alt=""
-    width="22"
-    height="22"
-    class="theme-icon-moon transition-transform duration-300 group-hover:rotate-12"
+    width="18"
+    height="18"
+    class="theme-icon-moon transition-transform duration-300"
   />
   <img
     src="/icons/sun.svg"
     alt=""
-    width="22"
-    height="22"
-    class="theme-icon-sun hidden transition-transform duration-300 group-hover:-rotate-12"
+    width="18"
+    height="18"
+    class="theme-icon-sun hidden transition-transform duration-300"
   />
 </button>
 

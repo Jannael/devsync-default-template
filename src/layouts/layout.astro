@@ -2,6 +2,7 @@
 import devsync from '@/devsync/devsync'
 import { defaultLang } from '@/devsync/devsync'
 import '@/styles/global.css'
+import Navbar from '@/components/navbar.astro'
 import Footer from '@/sections/footer.astro'
 import '@fontsource-variable/roboto/wght.css'
 import jostLatinWoff2 from '@fontsource-variable/jost/files/jost-latin-wght-normal.woff2?url'
@@ -148,6 +149,7 @@ const structuredData = {
     </script>
   </head>
   <body class="max-w-9xl bg-main text-text m-auto min-h-screen">
+    <Navbar />
     <main class="min-h-[calc(100vh-120px)]">
       <slot />
     </main>

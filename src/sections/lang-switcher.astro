@@ -13,26 +13,24 @@ const { currentLang = defaultLang, class: className } = Astro.props
   languages.length > 1 && (
     <nav
       aria-label="Language selector"
-      class={`${className ?? ''} ${className ?? ''}`}
+      class={`${className ?? ''} flex items-center gap-1 rounded-lg border border-border bg-main p-1`}
     >
-      <div class="relative rounded-full border border-text/15 bg-main/50 p-1.5 shadow-lg shadow-main/10 backdrop-blur-sm">
-        {languages.map((lang) => {
-          const isActive = lang === currentLang
-          return (
-            <a
-              href={`/${lang}/`}
-              aria-current={isActive ? 'page' : undefined}
-              class={`relative z-10 inline-block rounded-full px-5 py-2 text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-                isActive 
-                  ? 'bg-accent text-main shadow-lg shadow-accent/30' 
-                  : 'text-text/70 hover:text-accent'
-              }`}
-            >
-              {lang}
-            </a>
-          )
-        })}
-      </div>
+      {languages.map((lang) => {
+        const isActive = lang === currentLang
+        return (
+          <a
+            href={`/${lang}/`}
+            aria-current={isActive ? 'page' : undefined}
+            class={`rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+              isActive 
+                ? 'bg-accent text-white' 
+                : 'text-text-secondary hover:text-accent'
+            }`}
+          >
+            {lang}
+          </a>
+        )
+      })}
     </nav>
   )
 }

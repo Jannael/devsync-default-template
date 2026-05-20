@@ -15,78 +15,64 @@ const translation = translations[lang];
 
 {
   education.length > 0 && (
-    <section class="relative m-auto flex h-fit w-full max-w-6xl flex-col items-center px-6 lg:pb-24">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold tracking-tight lg:text-5xl">
+    <section class="relative m-auto w-full max-w-4xl px-6 py-16">
+      <div class="mb-12">
+        <h2 class="mb-2 inline-block rounded bg-accent-light px-3 py-1 text-2xl font-bold lg:text-3xl">
           {translation["Education"]}
         </h2>
-        <div class="section-divider mx-auto w-24" />
       </div>
-      <ul class="relative flex w-full flex-col items-center justify-center gap-8">
+
+      <ul class="space-y-6">
         {education.map(({ name, degree, img, date, links, list }) => (
-          <li class="group relative w-full">
-            <article class="relative overflow-hidden rounded-3xl bg-main/40 p-8 shadow-lg shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-main/30 lg:p-10">
-              <div class="absolute left-0 top-0 h-full w-1.5 rounded-r-full bg-linear-to-b from-third to-accent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+          <li class="card group relative overflow-hidden p-6 transition-all duration-300">
+            <div class="absolute left-0 top-0 h-full w-1 bg-accent"></div>
 
-              <div class="mb-6 flex flex-wrap items-center gap-4">
-                {img && (
-                  <div class="relative">
-                    <div class="absolute -inset-1 rounded-full bg-linear-to-r from-third to-accent opacity-30 blur-sm" />
-                    <img
-                      src={img}
-                      alt={name}
-                      width="48"
-                      height="48"
-                      class="relative z-10 h-12 w-12 rounded-full border-2 border-main object-cover"
-                    />
-                  </div>
-                )}
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold lg:text-2xl">{degree}</h3>
-                  {name && <span class="text-accent text-sm">at {name}</span>}
-                </div>
-                {date && (
-                  <span class="whitespace-nowrap rounded-full bg-second/20 px-4 py-2 text-sm font-medium text-accent backdrop-blur-sm">
-                    {date}
-                  </span>
-                )}
+            <div class="mb-4 flex flex-wrap items-center gap-4">
+              {img && (
+                <img
+                  src={img}
+                  alt={name}
+                  width="48"
+                  height="48"
+                  class="h-12 w-12 rounded-full border border-border object-cover"
+                />
+              )}
+              <div class="flex-1">
+                <h3 class="text-lg font-bold lg:text-xl">{degree}</h3>
+                {name && <span class="text-sm text-accent">{name}</span>}
               </div>
+              {date && (
+                <span class="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-secondary">
+                  {date}
+                </span>
+              )}
+            </div>
 
-              {list?.items?.length ? (
-                <ul class="mb-6 list-disc space-y-2 pl-7 text-sm">
-                  {list.items.map((item) => (
-                    <li class="text-text/70">
-                      <span class="font-semibold text-accent">
-                        {item.highlight}:
-                      </span>{" "}
-                      {item.description}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+            {list?.items?.length && (
+              <ul class="mb-4 space-y-1.5 pl-4">
+                {list.items.map((item) => (
+                  <li class="text-sm text-text-secondary">
+                    <span class="font-medium text-text">{item.highlight}:</span> {item.description}
+                  </li>
+                ))}
+              </ul>
+            )}
 
-              {links?.length ? (
-                <div class="flex flex-wrap gap-3">
-                  {links.map((link) => (
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="relative flex items-center rounded-full border border-text/15 bg-main/50 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30"
-                    >
-                      {link.icon && (
-                        <img
-                          src={link.icon}
-                          alt={link.name}
-                          class="mr-2 inline h-4 w-4"
-                        />
-                      )}
-                      {link.name}
-                    </a>
-                  ))}
-                </div>
-              ) : null}
-            </article>
+            {links?.length && (
+              <div class="flex flex-wrap gap-2">
+                {links.map((link) => (
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center text-sm font-medium text-text-secondary underline underline-offset-2 transition-colors hover:text-accent"
+                  >
+                    {link.icon && <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5" />}
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
         ))}
       </ul>
