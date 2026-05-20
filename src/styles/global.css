@@ -82,3 +82,10 @@ img[src^='/icons/'] {
 .dark .footer-logo {
   filter: brightness(0) invert(1);
 }
+
+.nav-logo {
+  filter: brightness(0) saturate(100%) invert(46%) sepia(52%) saturate(411%) hue-rotate(102deg) brightness(94%) contrast(88%);
+}
+.dark .nav-logo {
+  filter: brightness(0) saturate(100%) invert(77%) sepia(51%) saturate(468%) hue-rotate(92deg) brightness(96%) contrast(89%);
+}
