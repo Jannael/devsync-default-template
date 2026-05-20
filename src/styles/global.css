@@ -4,8 +4,8 @@
   --color-main: #FFFFFF;
   --color-text: #1A1A1A;
   --color-text-secondary: #6B7280;
-  --color-accent: #FF6B9D;
-  --color-accent-light: #FFE0EB;
+  --color-accent: #338e5e;
+  --color-accent-light: #e6f4ec;
   --color-border: #E5E7EB;
 }
 
@@ -13,8 +13,8 @@
   --color-main: #0F0F0F;
   --color-text: #F5F5F5;
   --color-text-secondary: #9CA3AF;
-  --color-accent: #FF6B9D;
-  --color-accent-light: #2D1F25;
+  --color-accent: #4ade80;
+  --color-accent-light: #1a2e22;
   --color-border: #2A2A2A;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent), #FF8FB1);
+  background: linear-gradient(135deg, var(--color-accent), #5cb87a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
