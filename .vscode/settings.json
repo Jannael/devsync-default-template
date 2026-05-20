@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["devsync", "jannael"]
+  "cSpell.words": ["devsync", "jannael"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
