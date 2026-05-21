@@ -37,7 +37,7 @@ if (!Astro.site && !devsync.site) {
 
 const site = Astro.site ?? new URL(devsync.site ?? 'https://devsync.work').toString()
 const canonicalUrl = new URL(Astro.url.pathname, site).toString()
-const ogImageUrl = new URL('/logo-og.png', site).toString()
+const ogImageUrl = new URL('/logo-og.jpg', site).toString()
 const ogImageAlt = `${devsync.name} - ${profile?.jobTitle || 'Professional Profile'}`
 const homeUrl = new URL('/', site).toString()
 const websiteId = `${homeUrl}#website`
