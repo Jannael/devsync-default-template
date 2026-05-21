@@ -28,7 +28,7 @@ const { name, img, web, links, description, list, skills } = Astro.props;
 ---
 
 <li class="group">
-  <article class="card overflow-hidden transition-all duration-300">
+  <article class="card flex h-full flex-col overflow-hidden transition-all duration-300">
     {img && (
       <a
         href={web ?? "#"}
@@ -46,7 +46,7 @@ const { name, img, web, links, description, list, skills } = Astro.props;
       </a>
     )}
 
-    <div class="p-6">
+    <div class="flex flex-1 flex-col p-6">
       {name && (
         <h3 class="mb-3 text-xl font-bold">
           {name}
