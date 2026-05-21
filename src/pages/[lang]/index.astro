@@ -1,11 +1,6 @@
 ---
-import Layout from "@/layouts/layout.astro";
-import Hero from "@/sections/hero.astro";
+import IndexPage from "@/pages/index.astro";
 import { languages } from "@core";
-import Certifications from "@/sections/certifications.astro";
-import Education from "@/sections/education.astro";
-import Experience from "@/sections/experience.astro";
-import Projects from "@/sections/projects.astro";
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
@@ -14,10 +9,4 @@ export function getStaticPaths() {
 }
 ---
 
-<Layout>
-  <Hero />
-  <Experience />
-  <Projects />
-  <Education />
-  <Certifications />
-</Layout>
+<IndexPage />

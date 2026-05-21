@@ -1,0 +1,507 @@
+{
+  "defaultLang": "en",
+  "site": "https://devsync.work",
+  "name": "Jannael Orlando",
+  "img": "https://avatars.githubusercontent.com/u/177653963?v=4",
+  "socialMedia": [
+    {
+      "name": "Devsync",
+      "url": "https://devsync.work",
+      "icon": "/favicon-32x32.svg",
+      "mdBadge": "![Devsync](https://img.shields.io/badge/Devsync-Website-0A66C2)"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/jannael/devsync",
+      "icon": "/icons/github.svg",
+      "mdBadge": "![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)"
+    }
+  ],
+  "githubUserName": "Jannael",
+  "en": {
+    "description": "This is a preview of the Devsync default template. I hope you like Devsync — if you do, please consider starring the repo at https://github.com/jannael/devsync <3",
+    "jobTitle": "Software Developer",
+    "status": {
+      "status": "building-devsync",
+      "badge": "![Status](https://img.shields.io/badge/Status-Building%20Devsync-blue)"
+    },
+    "languages": [
+      {
+        "name": "English / Spanish",
+        "mdBadge": "![Languages](https://img.shields.io/badge/Languages-EN%20%7C%20ES-1f6feb)",
+        "icon": "https://cdn.simpleicons.org/googletranslate"
+      }
+    ],
+    "experience": [
+      {
+        "company": "Devsync",
+        "position": "Creator & Lead Developer",
+        "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "description": "Building an open-source ecosystem that generates professional portfolios from a single JSON configuration.",
+        "date": "01/24 - Present",
+        "links": [
+          {
+            "name": "Devsync Website",
+            "url": "https://devsync.work",
+            "mdBadge": "![Devsync](https://img.shields.io/badge/Devsync-Website-0ea5e9)",
+            "icon": "https://cdn.simpleicons.org/googlechrome"
+          }
+        ],
+        "list": {
+          "title": "key-achievements",
+          "items": [
+            {
+              "highlight": "Zero-Config Portfolios",
+              "description": "Users can generate a production-ready multilingual portfolio in under 2 minutes with a single CLI command."
+            },
+            {
+              "highlight": "Automated Artifacts",
+              "description": "CI pipeline auto-generates CV, README, and LinkedIn assets on every DEVSYNC.json push."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Astro",
+            "mdBadge": "![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/astro"
+          },
+          {
+            "name": "TypeScript",
+            "mdBadge": "![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/typescript"
+          },
+          {
+            "name": "Tailwind CSS",
+            "mdBadge": "![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/tailwindcss"
+          }
+        ]
+      },
+      {
+        "company": "Freelance",
+        "position": "Full-Stack Developer",
+        "img": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200&h=200&fit=crop",
+        "web": "https://github.com/jannael",
+        "description": "Delivered custom web applications and automation tools for startups and small businesses.",
+        "date": "06/22 - 12/23",
+        "links": [
+          {
+            "name": "GitHub Profile",
+            "url": "https://github.com/jannael",
+            "mdBadge": "![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github&logoColor=white)",
+            "icon": "/icons/github.svg"
+          }
+        ],
+        "list": {
+          "title": "key-achievements",
+          "items": [
+            {
+              "highlight": "Client Automation",
+              "description": "Built internal tools that reduced manual reporting time by 70% for 3+ clients."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Node.js",
+            "mdBadge": "![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/nodedotjs"
+          },
+          {
+            "name": "React",
+            "mdBadge": "![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)",
+            "icon": "https://cdn.simpleicons.org/react"
+          },
+          {
+            "name": "PostgreSQL",
+            "mdBadge": "![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/postgresql"
+          }
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "name": "Devsync CLI",
+        "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "links": [
+          {
+            "name": "GitHub",
+            "url": "https://github.com/jannael/devsync",
+            "mdBadge": "![GitHub Repo](https://img.shields.io/badge/Repo-GitHub-181717?logo=github&logoColor=white)",
+            "icon": "/icons/github.svg"
+          },
+          {
+            "name": "npm",
+            "url": "https://npmjs.com/package/@jannael/devsync",
+            "mdBadge": "![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/npm"
+          }
+        ],
+        "description": "The core CLI tool that scaffolds, validates, and builds Devsync portfolios from DEVSYNC.json.",
+        "list": {
+          "title": "project-highlights",
+          "items": [
+            {
+              "highlight": "Schema Validation",
+              "description": "Zod-based validation ensures every portfolio meets strict data contracts before build."
+            },
+            {
+              "highlight": "Multi-Language Output",
+              "description": "Generates fully localized static sites with prefix-based routing and automatic redirects."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Bun",
+            "mdBadge": "![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/bun"
+          },
+          {
+            "name": "Zod",
+            "mdBadge": "![Zod](https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/zod"
+          },
+          {
+            "name": "CI/CD",
+            "mdBadge": "![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/githubactions"
+          }
+        ]
+      },
+      {
+        "name": "Portfolio Template",
+        "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "links": [
+          {
+            "name": "Live Preview",
+            "url": "https://devsync.work",
+            "mdBadge": "![Preview](https://img.shields.io/badge/Preview-Live-0ea5e9)",
+            "icon": "https://cdn.simpleicons.org/googlechrome"
+          }
+        ],
+        "description": "The default Astro template shipped with Devsync — responsive, accessible, and SEO-optimized out of the box.",
+        "list": {
+          "title": "project-highlights",
+          "items": [
+            {
+              "highlight": "Dark Mode",
+              "description": "System-preference aware theme toggle with localStorage persistence and smooth transitions."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Astro",
+            "mdBadge": "![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/astro"
+          },
+          {
+            "name": "Tailwind CSS",
+            "mdBadge": "![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/tailwindcss"
+          }
+        ]
+      }
+    ],
+    "education": [
+      {
+        "name": "Self-Taught Developer",
+        "degree": "Computer Science & Software Engineering",
+        "img": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&h=200&fit=crop",
+        "date": "2020 - Present",
+        "links": [
+          {
+            "name": "GitHub Learning",
+            "url": "https://github.com/jannael",
+            "mdBadge": "![GitHub](https://img.shields.io/badge/GitHub-Learning-181717?logo=github&logoColor=white)",
+            "icon": "/icons/github.svg"
+          }
+        ],
+        "list": {
+          "title": "education-highlights",
+          "items": [
+            {
+              "highlight": "Open Source Contributor",
+              "description": "Built and maintained multiple public projects, learning through real-world shipping and community feedback."
+            },
+            {
+              "highlight": "Continuous Learning",
+              "description": "Focused on modern web stack: Astro, TypeScript, Tailwind, and developer tooling."
+            }
+          ]
+        }
+      }
+    ],
+    "certifications": [
+      {
+        "name": "Open Source Maintainer",
+        "url": "https://github.com/jannael/devsync",
+        "list": {
+          "title": "what-this-validates",
+          "items": [
+            {
+              "highlight": "Project Leadership",
+              "description": "Validates ability to design, document, and maintain a public developer tool used by the community."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Open Source",
+            "mdBadge": "![Open Source](https://img.shields.io/badge/Open%20Source-Maintainer-339933)",
+            "icon": "https://cdn.simpleicons.org/github"
+          }
+        ]
+      }
+    ]
+  },
+  "es": {
+    "description": "Esta es una vista previa de la plantilla predeterminada de Devsync. Espero que te guste Devsync; si es así, por favor considera darle una estrella al repositorio en https://github.com/jannael/devsync <3",
+    "jobTitle": "Desarrollador de Software",
+    "status": {
+      "status": "construyendo-devsync",
+      "badge": "![Estado](https://img.shields.io/badge/Estado-Construyendo%20Devsync-blue)"
+    },
+    "languages": [
+      {
+        "name": "Inglés / Español",
+        "mdBadge": "![Idiomas](https://img.shields.io/badge/Idiomas-EN%20%7C%20ES-1f6feb)",
+        "icon": "https://cdn.simpleicons.org/googletranslate"
+      }
+    ],
+    "experience": [
+      {
+        "company": "Devsync",
+        "position": "Creador y Desarrollador Principal",
+        "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "description": "Construyendo un ecosistema open-source que genera portafolios profesionales desde una única configuración JSON.",
+        "date": "01/24 - Actualidad",
+        "links": [
+          {
+            "name": "Sitio de Devsync",
+            "url": "https://devsync.work",
+            "mdBadge": "![Devsync](https://img.shields.io/badge/Devsync-Sitio-0ea5e9)",
+            "icon": "https://cdn.simpleicons.org/googlechrome"
+          }
+        ],
+        "list": {
+          "title": "logros-clave",
+          "items": [
+            {
+              "highlight": "Portafolios sin Configuración",
+              "description": "Los usuarios pueden generar un portafolio multilingüe listo para producción en menos de 2 minutos con un solo comando CLI."
+            },
+            {
+              "highlight": "Artefactos Automatizados",
+              "description": "El pipeline de CI genera automáticamente CV, README y assets de LinkedIn en cada push de DEVSYNC.json."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Astro",
+            "mdBadge": "![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/astro"
+          },
+          {
+            "name": "TypeScript",
+            "mdBadge": "![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/typescript"
+          },
+          {
+            "name": "Tailwind CSS",
+            "mdBadge": "![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/tailwindcss"
+          }
+        ]
+      },
+      {
+        "company": "Freelance",
+        "position": "Desarrollador Full-Stack",
+        "img": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200&h=200&fit=crop",
+        "web": "https://github.com/jannael",
+        "description": "Entregué aplicaciones web personalizadas y herramientas de automatización para startups y pequeñas empresas.",
+        "date": "06/22 - 12/23",
+        "links": [
+          {
+            "name": "Perfil de GitHub",
+            "url": "https://github.com/jannael",
+            "mdBadge": "![GitHub](https://img.shields.io/badge/GitHub-Perfil-181717?logo=github&logoColor=white)",
+            "icon": "/icons/github.svg"
+          }
+        ],
+        "list": {
+          "title": "logros-clave",
+          "items": [
+            {
+              "highlight": "Automatización para Clientes",
+              "description": "Construí herramientas internas que redujeron el tiempo de reportes manuales en 70% para más de 3 clientes."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Node.js",
+            "mdBadge": "![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/nodedotjs"
+          },
+          {
+            "name": "React",
+            "mdBadge": "![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)",
+            "icon": "https://cdn.simpleicons.org/react"
+          },
+          {
+            "name": "PostgreSQL",
+            "mdBadge": "![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/postgresql"
+          }
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "name": "Devsync CLI",
+        "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "links": [
+          {
+            "name": "GitHub",
+            "url": "https://github.com/jannael/devsync",
+            "mdBadge": "![Repositorio GitHub](https://img.shields.io/badge/Repo-GitHub-181717?logo=github&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/github"
+          },
+          {
+            "name": "npm",
+            "url": "https://npmjs.com/package/@jannael/devsync",
+            "mdBadge": "![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/npm"
+          }
+        ],
+        "description": "La herramienta CLI principal que scaffoldea, valida y construye portafolios Devsync desde DEVSYNC.json.",
+        "list": {
+          "title": "puntos-destacados-del-proyecto",
+          "items": [
+            {
+              "highlight": "Validación de Esquema",
+              "description": "Validación basada en Zod asegura que cada portafolio cumple contratos de datos estrictos antes del build."
+            },
+            {
+              "highlight": "Salida Multi-Idioma",
+              "description": "Genera sitios estáticos completamente localizados con enrutamiento por prefijo y redirecciones automáticas."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Bun",
+            "mdBadge": "![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/bun"
+          },
+          {
+            "name": "Zod",
+            "mdBadge": "![Zod](https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/zod"
+          },
+          {
+            "name": "CI/CD",
+            "mdBadge": "![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/githubactions"
+          }
+        ]
+      },
+      {
+        "name": "Plantilla de Portafolio",
+        "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop",
+        "web": "https://devsync.work",
+        "links": [
+          {
+            "name": "Vista Previa en Vivo",
+            "url": "https://devsync.work",
+            "mdBadge": "![Preview](https://img.shields.io/badge/Preview-En%20Vivo-0ea5e9)",
+            "icon": "https://cdn.simpleicons.org/googlechrome"
+          }
+        ],
+        "description": "La plantilla Astro predeterminada incluida con Devsync — responsive, accesible y optimizada para SEO desde el inicio.",
+        "list": {
+          "title": "puntos-destacados-del-proyecto",
+          "items": [
+            {
+              "highlight": "Modo Oscuro",
+              "description": "Toggle de tema consciente de las preferencias del sistema con persistencia en localStorage y transiciones suaves."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Astro",
+            "mdBadge": "![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/astro"
+          },
+          {
+            "name": "Tailwind CSS",
+            "mdBadge": "![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)",
+            "icon": "https://cdn.simpleicons.org/tailwindcss"
+          }
+        ]
+      }
+    ],
+    "education": [
+      {
+        "name": "Desarrollador Autodidacta",
+        "degree": "Ciencias de la Computación e Ingeniería de Software",
+        "img": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&h=200&fit=crop",
+        "date": "2020 - Actualidad",
+        "links": [
+          {
+            "name": "Aprendizaje en GitHub",
+            "url": "https://github.com/jannael",
+            "mdBadge": "![GitHub](https://img.shields.io/badge/GitHub-Aprendizaje-181717?logo=github&logoColor=white)",
+            "icon": "/icons/github.svg"
+          }
+        ],
+        "list": {
+          "title": "logros-academicos",
+          "items": [
+            {
+              "highlight": "Contribuidor Open Source",
+              "description": "Construí y mantuve múltiples proyectos públicos, aprendiendo a través de lanzamientos reales y feedback de la comunidad."
+            },
+            {
+              "highlight": "Aprendizaje Continuo",
+              "description": "Enfocado en el stack web moderno: Astro, TypeScript, Tailwind y herramientas de desarrollo."
+            }
+          ]
+        }
+      }
+    ],
+    "certifications": [
+      {
+        "name": "Mantenedor Open Source",
+        "url": "https://github.com/jannael/devsync",
+        "list": {
+          "title": "que-valida-esto",
+          "items": [
+            {
+              "highlight": "Liderazgo de Proyecto",
+              "description": "Valida la capacidad de diseñar, documentar y mantener una herramienta de desarrollo pública utilizada por la comunidad."
+            }
+          ]
+        },
+        "skills": [
+          {
+            "name": "Open Source",
+            "mdBadge": "![Open Source](https://img.shields.io/badge/Open%20Source-Mantenedor-339933)",
+            "icon": "https://cdn.simpleicons.org/github"
+          }
+        ]
+      }
+    ]
+  }
+}

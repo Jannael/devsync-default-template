@@ -79,6 +79,14 @@ img[src^='/icons/'] {
   filter: brightness(0) invert(1);
 }
 
+img[src^='https://cdn.simpleicons.org/'] {
+  filter: brightness(0);
+}
+
+.dark img[src^='https://cdn.simpleicons.org/'] {
+  filter: brightness(0) invert(1);
+}
+
 .dark .footer-logo {
   filter: brightness(0) invert(1);
 }
