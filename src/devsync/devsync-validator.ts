@@ -90,7 +90,7 @@ const devsyncSchema = z
     socialMedia: z.array(linkSchema),
     githubUserName: z.string({ message: 'GitHub username is required' }),
   })
-  .catchall(devsyncObjectSchema.deepPartial())
+  .catchall(z.unknown())
 
 export type Link = z.infer<typeof linkSchema>
 export type Skills = z.infer<typeof skillsSchema>
@@ -98,6 +98,10 @@ export type ListSchema = z.infer<typeof ListSchema>
 export type Devsync = z.infer<typeof devsyncSchema>
 export const devsyncSchemaPartial = devsyncSchema.partial()
 export type DevsyncPartial = z.infer<typeof devsyncSchemaPartial>
+export type DevsyncObjectPartial = z.infer<ReturnType<typeof devsyncObjectSchema.deepPartial>>
 
 export const parseDevsync = (devsync: unknown): DevsyncPartial =>
-  devsyncSchemaPartial.parse(devsync)
+  devsyncSchemaPartial.safeParse(devsync).data ?? {}
+
+export const getLangData = (devsync: DevsyncPartial, lang: string): DevsyncObjectPartial =>
+  devsyncObjectSchema.deepPartial().safeParse((devsync as Record<string, unknown>)[lang]).data ?? {}
