@@ -7,7 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "node scripts/copy-preview && bunx @jannael/devsync build && node scripts/move-cv-pdfs.js && git reset --hard && git clean -fd && wrangler pages deploy"
+    "deploy": "node scripts/copy-preview && bunx @jannael/devsync build && node scripts/move-cv-pdfs.js && git reset --hard && git clean -fd && wrangler pages deploy",
+    "lint:fix": "oxlint --fix",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check ."
   },
   "dependencies": {
     "@fontsource-variable/jost": "5.2.8",
