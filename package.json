@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "node scripts/copy-preview && bunx @jannael/devsync build && node scripts/move-cv-pdfs.js && git reset --hard && git clean -fd && wrangler pages deploy"
   },
   "dependencies": {
     "@fontsource-variable/jost": "5.2.8",
@@ -21,5 +22,9 @@
   },
   "devsync": {
     "pathToCompiledCV": "./dist/[lang]/cv/index.html"
+  },
+  "devDependencies": {
+    "@astrojs/cloudflare": "13.5.1",
+    "wrangler": "4.92.0"
   }
 }

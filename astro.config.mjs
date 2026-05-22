@@ -2,9 +2,11 @@
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import devsync, { defaultLang, languages } from './src/devsync/devsync'
+import cloudflare from '@astrojs/cloudflare'
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: cloudflare(),
   vite: {
     plugins: [tailwindcss()],
   },
