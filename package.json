@@ -24,10 +24,21 @@
     "pathToCompiledCV": "./dist/[lang]/cv/index.html"
   },
   "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "17.0.4",
     "oxlint": "1.64.0",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.0",
     "wrangler": "4.92.0"
+  },
+  "lint-staged": {
+    "*.{astro,js,ts,mjs}": [
+      "prettier --write",
+      "oxlint --fix"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }
