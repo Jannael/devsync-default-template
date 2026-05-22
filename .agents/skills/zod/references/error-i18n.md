@@ -93,10 +93,7 @@ const userSchema = z.object({
   age: z.number().min(18),
 })
 
-const result = userSchema.safeParse(
-  { name: '', email: 'bad', age: 15 },
-  { errorMap }
-)
+const result = userSchema.safeParse({ name: '', email: 'bad', age: 15 }, { errorMap })
 
 // French error messages:
 // - "Ce champ est obligatoire"
@@ -108,7 +105,7 @@ const result = userSchema.safeParse(
 
 ```typescript
 // At application startup
-const userLocale = getUserLocale()  // From cookie, header, etc.
+const userLocale = getUserLocale() // From cookie, header, etc.
 z.setErrorMap(createErrorMap(userLocale))
 
 // All schemas now use localized messages
@@ -126,10 +123,7 @@ function useZodErrorMap() {
     switch (issue.code) {
       case z.ZodIssueCode.too_small:
         return {
-          message: intl.formatMessage(
-            { id: 'validation.tooShort' },
-            { min: issue.minimum }
-          )
+          message: intl.formatMessage({ id: 'validation.tooShort' }, { min: issue.minimum }),
         }
       // ...
     }
@@ -139,6 +133,7 @@ function useZodErrorMap() {
 ```
 
 **When NOT to use this pattern:**
+
 - Internal tools used only by your team
 - Single-language applications
 

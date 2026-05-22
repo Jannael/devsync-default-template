@@ -74,9 +74,7 @@ function validateSample<T>(
     }
   }
 
-  return errors.length > 0
-    ? { valid: false, sampleErrors: errors }
-    : { valid: true }
+  return errors.length > 0 ? { valid: false, sampleErrors: errors } : { valid: true }
 }
 
 // Check 100 random items from 100,000 - very fast
@@ -104,16 +102,18 @@ async function validateInBatches<T>(
       if (result.success) {
         validated.push(result.data)
       } else {
-        errors.push(...result.error.issues.map(issue => ({
-          ...issue,
-          path: [i + j, ...issue.path],
-        })))
+        errors.push(
+          ...result.error.issues.map((issue) => ({
+            ...issue,
+            path: [i + j, ...issue.path],
+          }))
+        )
       }
     }
 
     // Report progress and yield to event loop
     onProgress?.(Math.min(100, ((i + batchSize) / items.length) * 100))
-    await new Promise(resolve => setTimeout(resolve, 0))
+    await new Promise((resolve) => setTimeout(resolve, 0))
   }
 
   if (errors.length > 0) {
@@ -136,7 +136,7 @@ async function* validateStream<T>(
   items: AsyncIterable<unknown>
 ): AsyncGenerator<T, void, unknown> {
   for await (const item of items) {
-    yield schema.parse(item)  // Throws on invalid
+    yield schema.parse(item) // Throws on invalid
   }
 }
 
@@ -147,6 +147,7 @@ for await (const validItem of validateStream(itemSchema, dataStream)) {
 ```
 
 **When NOT to use this pattern:**
+
 - Small arrays (< 1000 items) - standard validation is fine
 - When all items must be validated for correctness guarantees
 

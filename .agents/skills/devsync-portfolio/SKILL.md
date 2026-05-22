@@ -6,16 +6,20 @@ description: Create portfolios using Devsync template with automated CV, GitHub,
 # Devsync Portfolio Creation Skill
 
 ## Purpose
+
 Create and maintain developer portfolios using the Devsync template system. This skill guides you through building portfolios where all content comes from `DEVSYNC.json` - never hardcode text in templates.
 
 ## Core Principle: Zero Hardcoded Text
+
 All UI text must use `translations[lang]['key']` from `@devsync/src/devsync/fields-translations.ts`. Never write `<h3>Projects</h3>` - use `<h3>{translations[lang]['Projects']}</h3>`.
 
 ## Template Framework
-Templates are framework-agnostic. The developer chooses their own stack 
+
+Templates are framework-agnostic. The developer chooses their own stack
 (Astro, Next.js, SvelteKit, Vue, vanilla HTML, etc.).
 
 When generating a template, always ask:
+
 - Which framework?
 
 Infer multilingual support directly unless user specifies otherwise.
@@ -23,6 +27,7 @@ Infer multilingual support directly unless user specifies otherwise.
 ## DEVSYNC.json Structure
 
 ### Global Fields (required, language-agnostic)
+
 ```json
 {
   "defaultLang": "en",
@@ -35,6 +40,7 @@ Infer multilingual support directly unless user specifies otherwise.
 ```
 
 ### DEVSYNC.json Example
+
 ```json
 {
   "defaultLang": "en",
@@ -212,7 +218,9 @@ The CLI command (`bunx devsync build`) executes:
 ## Translation System
 
 ### Current Keys (fields-translations.ts)
+
 Available in 8 languages (en, es, fr, pt, de, zh, ja, ko):
+
 - `Description`, `jobTitle`, `Status`, `Languages`
 - `Professional Experience`, `Projects`, `Education`, `Certifications`
 - `Core Skills`, `credential`, `academics`
@@ -232,7 +240,7 @@ When a template needs UI text not covered by existing keys, add it to `src/devsy
 export const translations = {
   en: {
     // ... existing keys
-    'Open to work': 'Open to work',   // ← add here
+    'Open to work': 'Open to work', // ← add here
   },
   es: {
     // ... existing keys
@@ -252,9 +260,10 @@ export const translations = {
 ## GitHub Actions Automation
 
 `.github/workflows/update-on-devsync-change.yml` triggers on `DEVSYNC.json` pushes:
+
 ```yaml
-- run: bunx devsync build  # Updates CV, README, LinkedIn, academics
-- uses: git-auto-commit-action  # Commits changes
+- run: bunx devsync build # Updates CV, README, LinkedIn, academics
+- uses: git-auto-commit-action # Commits changes
 ```
 
 ## Validation
@@ -269,6 +278,7 @@ export const translations = {
 ## Validation Schema
 
 Zod schema in `src/devsync/devsync-validator.ts` validates:
+
 - Required fields per section
 - Array structures (links, skills, list items)
 - Type safety for all DEVSYNC.json entries
@@ -276,8 +286,14 @@ Zod schema in `src/devsync/devsync-validator.ts` validates:
 Use `parseDevsync(devsync)` from `@devsync/src/devsync/devsync.ts` for validation.
 
 ## Available Exports (devsync.ts)
+
 ```typescript
-import devsync, { devsyncGlobalFields, languages, defaultLang, parseDevsync } from '@devsync/src/devsync/devsync'
+import devsync, {
+  devsyncGlobalFields,
+  languages,
+  defaultLang,
+  parseDevsync,
+} from '@devsync/src/devsync/devsync'
 ```
 
 ## Template Folder Structure
@@ -303,6 +319,7 @@ your-template/
 ```
 
 **Required files**:
+
 - `public/poster-*.webp` - Preview images for template gallery
 - `src/devsync/` - Core Devsync modules for translations and validation
 - `.github/workflows/update-on-devsync-change.yml` - Auto-update workflow
@@ -310,6 +327,7 @@ your-template/
 - `package.json` - With `devsync.pathToCompiledCV` and `devsync.poster` config
 
 **Optional**:
+
 - `public/icons/` - Custom icon SVGs referenced in `socialMedia[].icon` and `links[].icon`
 
 ## Publishing Templates
@@ -326,6 +344,7 @@ When publishing your Devsync template, include poster images for preview:
 ```
 
 **Poster images** (required for template preview):
+
 - `public/poster-light-mode.webp` - Light theme preview (recommended: 600x315px)
 - `public/poster-dark-mode.webp` - Dark theme preview (recommended: 600x315px)
 

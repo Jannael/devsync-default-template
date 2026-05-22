@@ -18,7 +18,7 @@ import { z } from 'zod'
 const categorySchema = z.object({
   id: z.string(),
   name: z.string(),
-  children: z.array(categorySchema),  // Error: Block-scoped variable used before declaration
+  children: z.array(categorySchema), // Error: Block-scoped variable used before declaration
 })
 ```
 
@@ -106,13 +106,7 @@ const menuItemSchema: z.ZodType<MenuItem> = z.object({
 **JSON Schema (any valid JSON):**
 
 ```typescript
-type JSONValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JSONValue[]
-  | { [key: string]: JSONValue }
+type JSONValue = string | number | boolean | null | JSONValue[] | { [key: string]: JSONValue }
 
 const jsonValueSchema: z.ZodType<JSONValue> = z.lazy(() =>
   z.union([
@@ -137,6 +131,7 @@ const jsonValueSchema: z.ZodType<JSONValue> = z.lazy(() =>
 ```
 
 **When NOT to use this pattern:**
+
 - Non-recursive schemas (lazy adds unnecessary indirection)
 - When you can flatten the structure instead
 

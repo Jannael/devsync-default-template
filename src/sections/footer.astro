@@ -1,19 +1,19 @@
 ---
-import devsync from "@core";
+import devsync from '@core'
 
-const fullName = devsync.name ?? "Portfolio";
-const year = new Date().getFullYear();
-const socialMedia = devsync.socialMedia ?? [];
+const fullName = devsync.name ?? 'Portfolio'
+const year = new Date().getFullYear()
+const socialMedia = devsync.socialMedia ?? []
 ---
 
-<footer class="mt-16 border-t border-border">
+<footer class="border-border mt-16 border-t">
   <div
     class="m-auto flex w-full max-w-4xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row"
   >
     <div class="flex items-center gap-3">
-      <span class="text-sm text-text-secondary">{year} {fullName}</span>
+      <span class="text-text-secondary text-sm">{year} {fullName}</span>
       <span class="text-text-secondary">·</span>
-      <span class="text-sm text-text-secondary">Built with Devsync</span>
+      <span class="text-text-secondary text-sm">Built with Devsync</span>
     </div>
 
     {
@@ -24,7 +24,7 @@ const socialMedia = devsync.socialMedia ?? [];
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm text-text-secondary underline underline-offset-4 transition-colors hover:text-accent"
+              class="text-text-secondary hover:text-accent text-sm underline underline-offset-4 transition-colors"
             >
               {social.name}
             </a>

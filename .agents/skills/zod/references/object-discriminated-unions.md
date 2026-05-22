@@ -32,7 +32,7 @@ type Response = z.infer<typeof responseSchema>
 function handleResponse(response: Response) {
   // TypeScript doesn't narrow automatically
   if (response.type === 'success') {
-    response.data  // Error: Property 'data' does not exist on type 'Response'
+    response.data // Error: Property 'data' does not exist on type 'Response'
     // Must cast or use type guards
   }
 }
@@ -54,19 +54,16 @@ const errorSchema = z.object({
 })
 
 // Discriminated union - Zod uses 'type' field for O(1) dispatch
-const responseSchema = z.discriminatedUnion('type', [
-  successSchema,
-  errorSchema,
-])
+const responseSchema = z.discriminatedUnion('type', [successSchema, errorSchema])
 
 type Response = z.infer<typeof responseSchema>
 
 function handleResponse(response: Response) {
   // TypeScript narrows automatically!
   if (response.type === 'success') {
-    response.data.id  // Works - TypeScript knows data exists
+    response.data.id // Works - TypeScript knows data exists
   } else {
-    response.message  // Works - TypeScript knows message exists
+    response.message // Works - TypeScript knows message exists
   }
 }
 ```
@@ -132,6 +129,7 @@ function processPayment(payment: Payment) {
 ```
 
 **When NOT to use this pattern:**
+
 - When variants don't share a common discriminator field
 - When the discriminator isn't a literal type (use regular union)
 

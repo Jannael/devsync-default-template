@@ -59,11 +59,11 @@ const priceSchema = parsePrice.pipe(validPrice).pipe(centsPrice)
 ```typescript
 // Without pipe - validation runs on raw input
 const schema1 = z.coerce.number().min(1)
-schema1.parse('')  // Passes! Empty string coerces to 0, but then... wait, 0 < 1
+schema1.parse('') // Passes! Empty string coerces to 0, but then... wait, 0 < 1
 
 // With pipe - validation runs on coerced value
 const schema2 = z.coerce.number().pipe(z.number().min(1))
-schema2.parse('')  // Fails correctly: 0 is less than 1
+schema2.parse('') // Fails correctly: 0 is less than 1
 ```
 
 **Complex data transformation:**
@@ -100,13 +100,14 @@ emailArraySchema.parse('John@Example.com, jane@test.com')
 ```typescript
 const schema = z.string().pipe(z.coerce.number()).pipe(z.number().positive())
 
-type Input = z.input<typeof schema>  // string
-type Output = z.output<typeof schema>  // number
+type Input = z.input<typeof schema> // string
+type Output = z.output<typeof schema> // number
 
 // Each pipe stage has clear input/output types
 ```
 
 **When NOT to use this pattern:**
+
 - Simple single-stage validation (adds unnecessary complexity)
 - When `.refine()` chain is sufficient and readable
 

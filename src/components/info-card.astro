@@ -34,21 +34,26 @@ const { company, position, img, web, date, links, description, list, skills, nam
 ---
 
 <li class="group relative mb-10 w-full last:mb-0 lg:mb-0">
-  <article class="relative overflow-hidden rounded-3xl bg-main/40 p-8 shadow-lg shadow-main/20 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-main/30 lg:p-10">
-    <div class="absolute left-0 top-0 h-1 w-0 rounded-r-full bg-linear-to-r from-third to-accent transition-all duration-500 group-hover:w-24" />
-    
+  <article
+    class="bg-main/40 shadow-main/20 hover:shadow-main/30 relative overflow-hidden rounded-3xl p-8 shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl lg:p-10"
+  >
+    <div
+      class="from-third to-accent absolute top-0 left-0 h-1 w-0 rounded-r-full bg-linear-to-r transition-all duration-500 group-hover:w-24"
+    >
+    </div>
+
     <div class="mb-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
       <div class="flex items-center gap-5">
         {
           img && (
             <div class="relative">
-              <div class="absolute -inset-1 rounded-full bg-linear-to-r from-third to-accent opacity-30 blur-sm" />
+              <div class="from-third to-accent absolute -inset-1 rounded-full bg-linear-to-r opacity-30 blur-sm" />
               <img
                 src={img}
                 alt={company}
                 width="56"
                 height="56"
-                class="relative z-10 h-14 w-14 rounded-full border-2 border-main object-cover shadow-lg"
+                class="border-main relative z-10 h-14 w-14 rounded-full border-2 object-cover shadow-lg"
               />
             </div>
           )
@@ -80,7 +85,7 @@ const { company, position, img, web, date, links, description, list, skills, nam
 
       {
         date && (
-          <span class="whitespace-nowrap rounded-full bg-second/20 px-5 py-2.5 text-sm font-medium text-accent backdrop-blur-sm">
+          <span class="bg-second/20 text-accent rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap backdrop-blur-sm">
             {date}
           </span>
         )
@@ -95,7 +100,7 @@ const { company, position, img, web, date, links, description, list, skills, nam
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="group/btn relative flex items-center justify-center rounded-full border border-text/15 bg-main/50 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-third hover:bg-third/30 hover:shadow-lg hover:shadow-third/20"
+              class="group/btn border-text/15 bg-main/50 hover:border-third hover:bg-third/30 hover:shadow-third/20 relative flex items-center justify-center rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               {link.icon && <img src={link.icon} alt={link.name} class="mr-2 inline h-4 w-4" />}
               <span class="relative z-10">{link.name}</span>
@@ -110,11 +115,13 @@ const { company, position, img, web, date, links, description, list, skills, nam
     {
       list?.items?.length ? (
         <>
-          <header class="mb-4 text-sm font-bold uppercase tracking-widest text-third">{list.title}</header>
+          <header class="text-third mb-4 text-sm font-bold tracking-widest uppercase">
+            {list.title}
+          </header>
           <ul class="mb-8 list-disc space-y-2.5 pl-7 text-sm">
             {list.items.map((item) => (
-              <li class="text-text/70 transition-colors duration-300 hover:text-text">
-                <span class="font-semibold text-accent">{item.highlight}:</span> {item.description}
+              <li class="text-text/70 hover:text-text transition-colors duration-300">
+                <span class="text-accent font-semibold">{item.highlight}:</span> {item.description}
               </li>
             ))}
           </ul>
@@ -126,8 +133,10 @@ const { company, position, img, web, date, links, description, list, skills, nam
       skills?.length ? (
         <div class="flex flex-wrap gap-2">
           {skills.map((skill) => (
-            <span class="inline-flex items-center rounded-full border border-text/10 bg-second/20 px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-accent hover:bg-accent/30">
-              {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-2 inline h-3.5 w-3.5" />}
+            <span class="border-text/10 bg-second/20 hover:border-accent hover:bg-accent/30 inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105">
+              {skill.icon && (
+                <img src={skill.icon} alt={skill.name} class="mr-2 inline h-3.5 w-3.5" />
+              )}
               {skill.name}
             </span>
           ))}

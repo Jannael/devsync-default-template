@@ -1,56 +1,40 @@
 ---
-import devsync from "@core";
-import { defaultLang } from "@core";
-import {
-  translations,
-  type availableLangsType,
-} from "@/devsync/fields-translations";
-import LangSwitcher from "@/sections/lang-switcher.astro";
-import ThemeSwitcher from "@/sections/theme-switcher.astro";
+import devsync from '@core'
+import { defaultLang } from '@core'
+import { translations, type availableLangsType } from '@/devsync/fields-translations'
+import LangSwitcher from '@/sections/lang-switcher.astro'
+import ThemeSwitcher from '@/sections/theme-switcher.astro'
 
-const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType;
-const translation = translations[lang];
-const fullName = devsync.name ?? "Portfolio";
-const firstName = fullName.split(" ")[0];
+const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
+const translation = translations[lang]
+const fullName = devsync.name ?? 'Portfolio'
+const firstName = fullName.split(' ')[0]
 ---
 
-<nav
-  class="sticky top-0 z-50 w-full border-b border-border bg-main/80 backdrop-blur-md"
->
-  <div
-    class="m-auto flex w-full max-w-4xl items-center justify-between px-6 py-4"
-  >
-    <a
-      href="#"
-      class="flex items-center gap-2 text-lg font-bold tracking-tight"
-    >
-      <img
-        src="/favicon-16x16.svg"
-        alt="Devsync"
-        class="nav-logo h-5 w-5"
-        width="20"
-        height="20"
-      />
+<nav class="border-border bg-main/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
+  <div class="m-auto flex w-full max-w-4xl items-center justify-between px-6 py-4">
+    <a href="#" class="flex items-center gap-2 text-lg font-bold tracking-tight">
+      <img src="/favicon-16x16.svg" alt="Devsync" class="nav-logo h-5 w-5" width="20" height="20" />
       {firstName}
     </a>
 
     <div class="hidden items-center gap-8 md:flex">
       <a
         href="#experience"
-        class="text-sm font-medium text-text-secondary transition-colors hover:text-accent"
+        class="text-text-secondary hover:text-accent text-sm font-medium transition-colors"
       >
-        {translation["Experience"]}
+        {translation['Experience']}
       </a>
       <a
         href="#projects"
-        class="text-sm font-medium text-text-secondary transition-colors hover:text-accent"
+        class="text-text-secondary hover:text-accent text-sm font-medium transition-colors"
       >
-        {translation["Projects"]}
+        {translation['Projects']}
       </a>
     </div>
 
     <div class="flex items-center gap-3">
-      <LangSwitcher currentLang={Astro.params.lang || "en"} class="mb-0" />
+      <LangSwitcher currentLang={Astro.params.lang || 'en'} class="mb-0" />
       <ThemeSwitcher />
     </div>
   </div>
