@@ -18,7 +18,7 @@
     "@fontsource-variable/jost": "5.2.8",
     "@fontsource-variable/roboto": "5.2.10",
     "@tailwindcss/vite": "4.3.0",
-    "astro": "6.3.2",
+    "astro": "6.3.7",
     "sharp": "^0.34.5",
     "tailwindcss": "4.3.0",
     "zod": "4.4.3"
@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "husky": "9.1.7",
-    "lint-staged": "17.0.4",
-    "oxlint": "1.64.0",
+    "lint-staged": "17.0.5",
+    "oxlint": "1.66.0",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "wrangler": "4.90.1"
+    "wrangler": "4.94.0"
   },
   "lint-staged": {
     "*.{astro,js,ts,mjs}": [
