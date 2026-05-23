@@ -56,7 +56,13 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
           {(devsync.name ?? 'Candidate Name') + (profile.jobTitle ? ' | ' + profile.jobTitle : '')}
         </h1>
         {profile.description && <p class="mt-3 text-sm leading-6">{profile.description}</p>}
-        {devsync.address && <p class="mt-2 text-sm leading-6">{devsync.address}</p>}
+        {
+          (devsync.address || devsync.email) && (
+            <p class="mt-2 text-sm leading-6">
+              {[devsync.address, devsync.email].filter(Boolean).join(' | ')}
+            </p>
+          )
+        }
         {
           socialMedia.length > 0 && (
             <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm leading-6">

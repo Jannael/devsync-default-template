@@ -19,6 +19,7 @@
   ],
   "githubUserName": "Jannael",
   "address": "Your City, Country",
+  "email": "your-email@example.com",
   "en": {
     "description": "This is a preview of the Devsync default template. I hope you like Devsync — if you do, please consider starring the repo at https://github.com/jannael/devsync <3",
     "jobTitle": "Software Developer",
