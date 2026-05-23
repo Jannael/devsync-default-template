@@ -42,7 +42,7 @@ const translation = translations[lang]
               <ul class="mb-4 space-y-1.5 pl-4">
                 {list.items.map((item) => (
                   <li class="text-text-secondary text-sm">
-                    <span class="text-text font-medium">{item.highlight}:</span> {item.description}
+                    <span class="text-text font-medium">{item.highlight}:</span>{' '}{item.description}
                   </li>
                 ))}
               </ul>
