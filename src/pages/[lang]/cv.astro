@@ -57,9 +57,9 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
         </h1>
         {profile.description && <p class="mt-3 text-sm leading-6">{profile.description}</p>}
         {
-          (devsync.address || devsync.email) && (
+          (devsync.address || devsync.email || devsync.phone) && (
             <p class="mt-2 text-sm leading-6">
-              {[devsync.address, devsync.email].filter(Boolean).join(' | ')}
+              {[devsync.address, devsync.email, devsync.phone].filter(Boolean).join(' | ')}
             </p>
           )
         }

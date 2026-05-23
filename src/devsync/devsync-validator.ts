@@ -91,6 +91,7 @@ const devsyncSchema = z
     githubUserName: z.string({ message: 'GitHub username is required' }),
     address: z.string({ message: 'Address is required' }),
     email: z.string({ message: 'Email is required' }),
+    phone: z.string({ message: 'Phone is required' }),
   })
   .catchall(z.unknown())
 
