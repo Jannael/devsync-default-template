@@ -36,3 +36,38 @@ Visit [devsync.work](https://devsync.work) to configure your profile and generat
 | Moon     | `/icon/moon.svg`     |
 | Sun      | `/icon/sun.svg`      |
 | X        | `/icon/x.svg`        |
+
+## ATS Benchmark
+
+![ATS Benchmark](screenshots/benchmark.png)
+
+ATS compatibility test performed on [Jobscan](https://www.jobscan.co/) using data from `preview-DEVSYNC.json` against the following job description:
+
+> **Senior Frontend Engineer - Developer Tools**
+>
+> **Location:** Remote | **Type:** Full-time
+>
+> **About the role:**
+> We are looking for a Senior Frontend Engineer to join our Developer Tools team. You will build and maintain CLI tools, web templates, and automation pipelines that help developers ship faster.
+>
+> **Requirements:**
+>
+> - 3+ years of experience in TypeScript and Node.js development
+> - Strong experience with Astro, React, and Tailwind CSS
+> - Experience building and maintaining open-source CLI tools published to npm
+> - Experience with Zod or similar schema validation libraries
+> - Experience with GitHub Actions or CI/CD pipelines
+> - Bilingual English / Spanish
+>
+> **Nice to have:**
+>
+> - Experience with Bun runtime
+> - Experience with PostgreSQL
+> - Active open-source portfolio or personal projects
+>
+> **Key responsibilities:**
+>
+> - Design and maintain CLI scaffolding tools
+> - Build responsive multilingual web templates
+> - Implement automated CI pipelines for artifact generation
+> - Write documentation and onboarding guides
