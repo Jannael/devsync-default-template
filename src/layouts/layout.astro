@@ -1,5 +1,5 @@
 ---
-import devsync from '@core'
+import devsync, { getLangData } from '@core'
 import { defaultLang } from '@core'
 import '@/styles/global.css'
 import Navbar from '@/components/navbar.astro'
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const lang = (Astro.params.lang || defaultLang).toLowerCase()
-const profile = devsync[lang] ?? devsync[defaultLang]
+const profile = getLangData(devsync, lang)
 
 // Build dynamic SEO from DEVSYNC.json data
 const seoTitle = profile?.jobTitle ? `${devsync.name} | ${profile.jobTitle}` : devsync.name
@@ -37,7 +37,7 @@ if (!Astro.site && !devsync.site) {
 
 const site = Astro.site ?? new URL(devsync.site ?? 'https://devsync.work').toString()
 const canonicalUrl = new URL(Astro.url.pathname, site).toString()
-const ogImageUrl = new URL('/logo-og.jpg', site).toString()
+const ogImageUrl = new URL('/poster-dark-mode.webp', site).toString()
 const ogImageAlt = `${devsync.name} - ${profile?.jobTitle || 'Professional Profile'}`
 const homeUrl = new URL('/', site).toString()
 const websiteId = `${homeUrl}#website`

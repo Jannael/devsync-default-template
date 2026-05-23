@@ -1,9 +1,9 @@
 ---
 import { translations, type availableLangsType } from '@/devsync/fields-translations'
-import devsync, { defaultLang } from '@core'
+import devsync, { getLangData, defaultLang } from '@core'
 
 const lang = (Astro.params.lang || defaultLang).toLowerCase() as availableLangsType
-const profile = devsync[lang] ?? devsync[defaultLang]
+const profile = getLangData(devsync, lang)
 const certifications = profile.certifications ?? []
 const translation = translations[lang]
 ---
