@@ -1,5 +1,5 @@
 ---
-import devsync from '@core'
+import devsync, { getLangData } from '@core'
 import '@/styles/global.css'
 import '@fontsource-variable/roboto/wght.css'
 import robotoLatinWoff2 from '@fontsource-variable/roboto/files/roboto-latin-wght-normal.woff2?url'
@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 const lang = (Astro.params.lang || defaultLang) as availableLangsType
 
-const profile = devsync[lang]
+const profile = getLangData(devsync, lang)
 const experience = profile.experience ?? []
 const projects = profile.projects ?? []
 const education = profile.education ?? []
@@ -27,16 +27,7 @@ const skillsFromSkillBlocks = [
   ...certifications.flatMap((item) => (item.skills ?? []).map((skill) => skill.name)),
 ]
 
-const skillsFromAchievements = [
-  ...experience.flatMap((item) => (item.list?.items ?? []).map((entry) => entry.highlight)),
-  ...projects.flatMap((item) => (item.list?.items ?? []).map((entry) => entry.highlight)),
-  ...education.flatMap((item) => (item.list?.items ?? []).map((entry) => entry.highlight)),
-  ...certifications.flatMap((item) => (item.list?.items ?? []).map((entry) => entry.highlight)),
-]
-
-const coreSkills = [...new Set([...skillsFromSkillBlocks, ...skillsFromAchievements])].filter(
-  Boolean
-)
+const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
 ---
 
 <html lang={lang} class="bg-white">
