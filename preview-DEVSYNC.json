@@ -23,7 +23,7 @@
   "phone": "+1 123 456 7890",
   "en": {
     "description": "This is a preview of the Devsync default template. I hope you like Devsync — if you do, please consider starring the repo at https://github.com/jannael/devsync <3",
-    "jobTitle": "Software Developer",
+    "jobTitle": "Senior Frontend Engineer",
     "status": {
       "status": "building-devsync",
       "badge": "![Status](https://img.shields.io/badge/Status-Building%20Devsync-blue)"
