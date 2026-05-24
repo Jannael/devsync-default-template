@@ -119,10 +119,9 @@ export type ListSchema = z.infer<typeof ListSchema>
 export type Devsync = z.infer<typeof devsyncSchema>
 export const devsyncSchemaPartial = devsyncSchema.partial()
 export type DevsyncPartial = z.infer<typeof devsyncSchemaPartial>
-export type DevsyncObjectPartial = z.infer<typeof devsyncObjectSchema>
 
 export const parseDevsync = (devsync: unknown): DevsyncPartial =>
   devsyncSchemaPartial.safeParse(devsync).data ?? {}
 
-export const getLangData = (devsync: DevsyncPartial, lang: string): DevsyncObjectPartial =>
+export const getLangData = (devsync: DevsyncPartial, lang: string): DevsyncPartial =>
   devsyncObjectSchema.safeParse((devsync as Record<string, unknown>)[lang]).data ?? {}
