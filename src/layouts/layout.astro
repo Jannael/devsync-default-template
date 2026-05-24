@@ -20,7 +20,9 @@ const profile = getLangData(devsync, lang)
 const seoTitle = profile?.jobTitle ? `${devsync.name} | ${profile.jobTitle}` : devsync.name
 
 const seoDescription =
-  profile?.description?.split('. ').slice(0, 2).join('. ') || profile?.description
+  typeof profile?.description === 'string'
+    ? profile.description.split('. ').slice(0, 2).join('. ')
+    : (profile?.description as string)
 
 // Extract social links for structured data
 const socialLinks = [
