@@ -1,5 +1,6 @@
 import { readdir, copyFile, mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
+import devsync from '../DEVSYNC.json' with { type: 'json' }
 
 const distDir = './dist'
 const publicDir = './public'
@@ -9,7 +10,7 @@ const pdfFiles = []
 try {
   const files = await readdir(publicDir)
   for (const file of files) {
-    if (file.match(/^CV-\w+\.pdf$/)) {
+    if (file.startsWith(devsync.name) && file.match(/-\w+\.pdf$/)) {
       pdfFiles.push({
         src: join(publicDir, file),
         dest: join(distDir, file),
