@@ -13,6 +13,7 @@
   ],
   "githubUserName": "your-github-username",
   "address": "Your City, Country",
+  "coreSkills": ["Core skill 1", "Core skill 2", "Core skill 3"],
   "email": "your-email@example.com",
   "phone": "+1 123 456 7890",
   "en": {

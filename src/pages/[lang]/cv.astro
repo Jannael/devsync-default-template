@@ -20,14 +20,6 @@ const education = profile.education ?? []
 const certifications = profile.certifications ?? []
 const socialMedia = devsync.socialMedia ?? []
 const userLanguages = profile.languages ?? []
-
-const skillsFromSkillBlocks = [
-  ...experience.flatMap((item) => (item.skills ?? []).map((skill) => skill.name)),
-  ...projects.flatMap((item) => (item.skills ?? []).map((skill) => skill.name)),
-  ...certifications.flatMap((item) => (item.skills ?? []).map((skill) => skill.name)),
-]
-
-const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
 ---
 
 <html lang={lang} class="bg-white">
@@ -80,18 +72,18 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
       </header>
 
       {
-        coreSkills.length > 0 && (
+        Array.isArray(devsync.coreSkills) && devsync.coreSkills.length > 0 && (
           <section class="mt-5">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Core Skills']}
             </h2>
-            <p class="mt-2 text-sm leading-6">{coreSkills.join(' | ')}</p>
+            <p class="mt-2 text-sm leading-6">{devsync.coreSkills?.join(' | ')}</p>
           </section>
         )
       }
 
       {
-        experience.length > 0 && (
+        Array.isArray(experience) && experience.length > 0 && (
           <section class="mt-7">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Professional Experience']}
@@ -108,7 +100,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
                   {item.description && <p class="mt-2 text-sm leading-6">{item.description}</p>}
                   {item.list?.items && item.list.items.length > 0 && (
                     <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
-                      {item.list.items.map((entry) => (
+                      {item.list.items.map((entry: { highlight: string; description: string }) => (
                         <li>
                           <span class="font-semibold">{entry.highlight}:</span> {entry.description}
                         </li>
@@ -123,7 +115,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
       }
 
       {
-        projects.length > 0 && (
+        Array.isArray(projects) && projects.length > 0 && (
           <section class="mt-7">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Projects']}
@@ -135,7 +127,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
                   {item.description && <p class="mt-2 text-sm leading-6">{item.description}</p>}
                   {item.list?.items && item.list.items.length > 0 && (
                     <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
-                      {item.list.items.map((entry) => (
+                      {item.list.items.map((entry: { highlight: string; description: string }) => (
                         <li>
                           <span class="font-semibold">{entry.highlight}:</span> {entry.description}
                         </li>
@@ -144,7 +136,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
                   )}
                   {item.links && item.links.length > 0 && (
                     <div class="mt-2 space-y-1 text-sm leading-6">
-                      {item.links.map((link) => (
+                      {item.links.map((link: { name: string; url: string }) => (
                         <p>
                           <span class="font-semibold">{link.name}:</span>{' '}
                           <a
@@ -165,7 +157,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
       }
 
       {
-        education.length > 0 && (
+        Array.isArray(education) && education.length > 0 && (
           <section class="mt-7">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Education']}
@@ -181,7 +173,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
                   </div>
                   {item.list?.items && item.list.items.length > 0 && (
                     <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
-                      {item.list.items.map((entry) => (
+                      {item.list.items.map((entry: { highlight: string; description: string }) => (
                         <li>
                           <span class="font-semibold">{entry.highlight}:</span> {entry.description}
                         </li>
@@ -196,7 +188,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
       }
 
       {
-        certifications.length > 0 && (
+        Array.isArray(certifications) && certifications.length > 0 && (
           <section class="mt-7">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Certifications']}
@@ -215,7 +207,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
                   )}
                   {item.list?.items && item.list.items.length > 0 && (
                     <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
-                      {item.list.items.map((entry) => (
+                      {item.list.items.map((entry: { highlight: string; description: string }) => (
                         <li>
                           <span class="font-semibold">{entry.highlight}:</span> {entry.description}
                         </li>
@@ -230,7 +222,7 @@ const coreSkills = [...new Set(skillsFromSkillBlocks)].filter(Boolean)
       }
 
       {
-        userLanguages.length > 0 && (
+        Array.isArray(userLanguages) && userLanguages.length > 0 && (
           <section class="mt-7 flex items-center">
             <h2 class="text-base font-semibold tracking-wider uppercase">
               {translations[lang]['Languages']}
