@@ -9,7 +9,7 @@ const translation = translations[lang]
 ---
 
 {
-  education.length > 0 && (
+  Array.isArray(education) && education.length > 0 && (
     <section class="relative m-auto w-full max-w-4xl px-6 py-16">
       <div class="mb-12">
         <h2 class="bg-accent-light mb-2 inline-block rounded px-3 py-1 text-2xl font-bold lg:text-3xl">
@@ -43,9 +43,9 @@ const translation = translations[lang]
               )}
             </div>
 
-            {list?.items?.length && (
+            {Array.isArray(list?.items) && list.items.length > 0 && (
               <ul class="mb-4 space-y-1.5 pl-4">
-                {list.items.map((item) => (
+                {list.items.map((item: { highlight: string; description: string }) => (
                   <li class="text-text-secondary text-sm">
                     <span class="text-text font-medium">{item.highlight}:</span> {item.description}
                   </li>
@@ -53,9 +53,9 @@ const translation = translations[lang]
               </ul>
             )}
 
-            {links?.length && (
+            {Array.isArray(links) && links.length > 0 && (
               <div class="flex flex-wrap gap-2">
-                {links.map((link) => (
+                {links.map((link: { name: string; url: string; icon: string }) => (
                   <a
                     href={link.url}
                     target="_blank"
