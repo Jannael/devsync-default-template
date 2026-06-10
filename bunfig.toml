@@ -1,4 +1,5 @@
 [install]
 minimumReleaseAge = 86400 # 1 day
+exact = true
 
 minimumReleaseAgeExcludes = ["@types/node", "typescript", "@jannael/devsync", "@jannael/config"]
