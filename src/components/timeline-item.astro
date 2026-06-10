@@ -1,84 +1,83 @@
 ---
 interface Props {
-  company?: string
-  position?: string
-  img?: string
-  web?: string
-  date?: string
-  links?: {
-    name?: string
-    url?: string
-    mdBadge?: string
-    icon?: string
-  }[]
-  description?: string
-  list?: {
-    title?: string
-    items?: {
-      highlight?: string
-      description?: string
-    }[]
-  }
-  skills?: {
-    name?: string
-    mdBadge?: string
-    icon?: string
-  }[]
-  index?: number
-  isLast?: boolean
+	company?: string
+	position?: string
+	img?: string
+	web?: string
+	date?: string
+	links?: {
+		name?: string
+		url?: string
+		mdBadge?: string
+		icon?: string
+	}[]
+	description?: string
+	list?: {
+		title?: string
+		items?: {
+			highlight?: string
+			description?: string
+		}[]
+	}
+	skills?: {
+		name?: string
+		mdBadge?: string
+		icon?: string
+	}[]
+	index?: number
+	isLast?: boolean
 }
 
-const { company, position, img, web, date, links, description, list, skills, index, isLast } =
-  Astro.props
+const { company, position, date, description, list, skills } = Astro.props
 ---
 
 <li class="{isLast ? '' : 'border-l-2 border-border'} relative ml-4 pb-12 pl-12">
-  <div class="bg-accent ring-main absolute top-0 -left-[9px] h-4 w-4 rounded-full ring-4"></div>
+	<div class="bg-accent ring-main absolute top-0 -left-[9px] h-4 w-4 rounded-full ring-4"></div>
 
-  <div class="mb-3">
-    {
-      date && (
-        <span class="border-text bg-main inline-block rounded-lg border-2 px-4 py-2 text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-          {date}
-        </span>
-      )
-    }
-  </div>
+	<div class="mb-3">
+		{
+			date && (
+				<span class="border-text bg-main inline-block rounded-lg border-2 px-4 py-2 text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+					{date}
+				</span>
+			)
+		}
+	</div>
 
-  <div class="mb-4">
-    {
-      position && company && (
-        <h3 class="text-xl font-bold">
-          {position} en <span class="text-accent">{company}</span>
-        </h3>
-      )
-    }
-  </div>
+	<div class="mb-4">
+		{
+			position && company && (
+				<h3 class="text-xl font-bold">
+					{position} en <span class="text-accent">{company}</span>
+				</h3>
+			)
+		}
+	</div>
 
-  {description && <p class="text-text-secondary mb-4 text-sm leading-relaxed">{description}</p>}
+	{description && <p class="text-text-secondary mb-4 text-sm leading-relaxed">{description}</p>}
 
-  {
-    list?.items?.length && (
-      <ul class="mb-4 space-y-2">
-        {list.items.map((item) => (
-          <li class="text-text-secondary text-sm">
-            <span class="text-text font-semibold">{item.highlight}:</span> {item.description}
-          </li>
-        ))}
-      </ul>
-    )
-  }
+	{
+		list?.items?.length && (
+			<ul class="mb-4 space-y-2">
+				{list.items.map((item) => (
+					<li class="text-text-secondary text-sm">
+						<span class="text-text font-semibold">{item.highlight}:</span> {item.description}
+					</li>
+				))}
+			</ul>
+		)
+	}
 
-  {
-    skills?.length && (
-      <div class="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-          <span class="border-border bg-main inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">
-            {skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3" />}
-            {skill.name}
-          </span>
-        ))}
-      </div>
-    )
-  }
+	{
+		skills?.length && (
+			<div class="flex flex-wrap gap-2">
+				{skills.map((skill) => (
+					<span class="border-border bg-main inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">
+						{skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3" />}
+						{skill.name}
+					</span>
+				))}
+			</div>
+		)
+	}
 </li>

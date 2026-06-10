@@ -31,15 +31,15 @@ console.log(user.name.toUpperCase()) // Crash if name is null/undefined
 import { z } from 'zod'
 
 const configSchema = z.object({
-  database: z.object({
-    host: z.string(),
-    port: z.number(),
-    name: z.string(),
-  }),
-  api: z.object({
-    key: z.string(),
-    timeout: z.number().default(5000),
-  }),
+	database: z.object({
+		host: z.string(),
+		port: z.number(),
+		name: z.string(),
+	}),
+	api: z.object({
+		key: z.string(),
+		timeout: z.number().default(5000),
+	}),
 })
 
 // Parse JSON then validate
@@ -49,9 +49,9 @@ const config = configSchema.parse(rawConfig)
 
 // API response validation
 const userSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string().email(),
+	id: z.string(),
+	name: z.string(),
+	email: z.string().email(),
 })
 
 const response = await fetch('/api/user')
@@ -64,21 +64,21 @@ const user = userSchema.parse(rawUser)
 
 ```typescript
 function parseJSON<T>(schema: z.ZodType<T>, json: string): T {
-  return schema.parse(JSON.parse(json))
+	return schema.parse(JSON.parse(json))
 }
 
 function safeParseJSON<T>(schema: z.ZodType<T>, json: string) {
-  try {
-    return { success: true as const, data: schema.parse(JSON.parse(json)) }
-  } catch (error) {
-    if (error instanceof SyntaxError) {
-      return { success: false as const, error: 'Invalid JSON' }
-    }
-    if (error instanceof z.ZodError) {
-      return { success: false as const, error: error.issues }
-    }
-    throw error
-  }
+	try {
+		return { success: true as const, data: schema.parse(JSON.parse(json)) }
+	} catch (error) {
+		if (error instanceof SyntaxError) {
+			return { success: false as const, error: 'Invalid JSON' }
+		}
+		if (error instanceof z.ZodError) {
+			return { success: false as const, error: error.issues }
+		}
+		throw error
+	}
 }
 
 // Usage
@@ -89,23 +89,23 @@ const config = parseJSON(configSchema, fs.readFileSync('config.json', 'utf-8'))
 
 ```typescript
 const cartSchema = z.array(
-  z.object({
-    productId: z.string(),
-    quantity: z.number().int().positive(),
-  })
+	z.object({
+		productId: z.string(),
+		quantity: z.number().int().positive(),
+	}),
 )
 
 function getCart() {
-  const raw = localStorage.getItem('cart')
-  if (!raw) return []
+	const raw = localStorage.getItem('cart')
+	if (!raw) return []
 
-  const result = cartSchema.safeParse(JSON.parse(raw))
-  if (!result.success) {
-    // Corrupted cart data - clear it
-    localStorage.removeItem('cart')
-    return []
-  }
-  return result.data
+	const result = cartSchema.safeParse(JSON.parse(raw))
+	if (!result.success) {
+		// Corrupted cart data - clear it
+		localStorage.removeItem('cart')
+		return []
+	}
+	return result.data
 }
 ```
 

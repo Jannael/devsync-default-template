@@ -15,10 +15,10 @@ HTML forms and URL query parameters always transmit data as strings. Using `z.nu
 import { z } from 'zod'
 
 const searchSchema = z.object({
-  query: z.string(),
-  page: z.number(), // Expects actual number
-  limit: z.number(),
-  showDeleted: z.boolean(), // Expects actual boolean
+	query: z.string(),
+	page: z.number(), // Expects actual number
+	limit: z.number(),
+	showDeleted: z.boolean(), // Expects actual boolean
 })
 
 // Form data / query params are strings
@@ -38,10 +38,10 @@ searchSchema.parse(params)
 import { z } from 'zod'
 
 const searchSchema = z.object({
-  query: z.string(),
-  page: z.coerce.number().int().positive().default(1),
-  limit: z.coerce.number().int().min(1).max(100).default(10),
-  showDeleted: z.coerce.boolean().default(false),
+	query: z.string(),
+	page: z.coerce.number().int().positive().default(1),
+	limit: z.coerce.number().int().min(1).max(100).default(10),
+	showDeleted: z.coerce.boolean().default(false),
 })
 
 // Form data / query params are strings

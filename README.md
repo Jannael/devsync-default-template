@@ -29,21 +29,21 @@ Customize the theme by editing `src/styles/global.css`. The template uses Tailwi
 
 ```css
 @theme {
-  --color-main: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6b7280;
-  --color-accent: #338e5e;
-  --color-accent-light: #e6f4ec;
-  --color-border: #e5e7eb;
+	--color-main: #ffffff;
+	--color-text: #1a1a1a;
+	--color-text-secondary: #6b7280;
+	--color-accent: #338e5e;
+	--color-accent-light: #e6f4ec;
+	--color-border: #e5e7eb;
 }
 
 .dark {
-  --color-main: #0f0f0f;
-  --color-text: #f5f5f5;
-  --color-text-secondary: #9ca3af;
-  --color-accent: #4ade80;
-  --color-accent-light: #1a2e22;
-  --color-border: #2a2a2a;
+	--color-main: #0f0f0f;
+	--color-text: #f5f5f5;
+	--color-text-secondary: #9ca3af;
+	--color-accent: #4ade80;
+	--color-accent-light: #1a2e22;
+	--color-border: #2a2a2a;
 }
 ```
 

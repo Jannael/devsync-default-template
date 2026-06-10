@@ -9,70 +9,56 @@ const translation = translations[lang]
 ---
 
 {
-  Array.isArray(education) && education.length > 0 && (
-    <section class="relative m-auto w-full max-w-4xl px-6 py-16">
-      <div class="mb-12">
-        <h2 class="bg-accent-light mb-2 inline-block rounded px-3 py-1 text-2xl font-bold lg:text-3xl">
-          {translation['Education']}
-        </h2>
-      </div>
+	Array.isArray(education) && education.length > 0 && (
+		<section class="relative m-auto w-full max-w-4xl px-6 py-16">
+			<div class="mb-12">
+				<h2 class="bg-accent-light mb-2 inline-block rounded px-3 py-1 text-2xl font-bold lg:text-3xl">{translation['Education']}</h2>
+			</div>
 
-      <ul class="space-y-6">
-        {education.map(({ name, degree, img, date, links, list }) => (
-          <li class="card group relative overflow-hidden p-6 transition-all duration-300">
-            <div class="bg-accent absolute top-0 left-0 h-full w-1" />
+			<ul class="space-y-6">
+				{education.map(({ name, degree, img, date, links, list }) => (
+					<li class="card group relative overflow-hidden p-6 transition-all duration-300">
+						<div class="bg-accent absolute top-0 left-0 h-full w-1" />
 
-            <div class="mb-4 flex flex-wrap items-center gap-4">
-              {img && (
-                <img
-                  src={img}
-                  alt={name}
-                  width="48"
-                  height="48"
-                  class="border-border h-12 w-12 rounded-full border object-cover"
-                />
-              )}
-              <div class="flex-1">
-                <h3 class="text-lg font-bold lg:text-xl">{degree}</h3>
-                {name && <span class="text-accent text-sm">{name}</span>}
-              </div>
-              {date && (
-                <span class="border-border text-text-secondary w-100 rounded-lg border px-3 py-1.5 text-xs font-medium sm:w-auto">
-                  {date}
-                </span>
-              )}
-            </div>
+						<div class="mb-4 flex flex-wrap items-center gap-4">
+							{img && <img src={img} alt={name} width="48" height="48" class="border-border h-12 w-12 rounded-full border object-cover" />}
+							<div class="flex-1">
+								<h3 class="text-lg font-bold lg:text-xl">{degree}</h3>
+								{name && <span class="text-accent text-sm">{name}</span>}
+							</div>
+							{date && (
+								<span class="border-border text-text-secondary w-100 rounded-lg border px-3 py-1.5 text-xs font-medium sm:w-auto">{date}</span>
+							)}
+						</div>
 
-            {Array.isArray(list?.items) && list.items.length > 0 && (
-              <ul class="mb-4 space-y-1.5 pl-4">
-                {list.items.map((item: { highlight: string; description: string }) => (
-                  <li class="text-text-secondary text-sm">
-                    <span class="text-text font-medium">{item.highlight}:</span> {item.description}
-                  </li>
-                ))}
-              </ul>
-            )}
+						{Array.isArray(list?.items) && list.items.length > 0 && (
+							<ul class="mb-4 space-y-1.5 pl-4">
+								{list.items.map((item: { highlight: string; description: string }) => (
+									<li class="text-text-secondary text-sm">
+										<span class="text-text font-medium">{item.highlight}:</span> {item.description}
+									</li>
+								))}
+							</ul>
+						)}
 
-            {Array.isArray(links) && links.length > 0 && (
-              <div class="flex flex-wrap gap-2">
-                {links.map((link: { name: string; url: string; icon: string }) => (
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-text-secondary hover:text-accent inline-flex items-center text-sm font-medium underline underline-offset-2 transition-colors"
-                  >
-                    {link.icon && (
-                      <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5" />
-                    )}
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
+						{Array.isArray(links) && links.length > 0 && (
+							<div class="flex flex-wrap gap-2">
+								{links.map((link: { name: string; url: string; icon: string }) => (
+									<a
+										href={link.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="text-text-secondary hover:text-accent inline-flex items-center text-sm font-medium underline underline-offset-2 transition-colors"
+									>
+										{link.icon && <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5" />}
+										{link.name}
+									</a>
+								))}
+							</div>
+						)}
+					</li>
+				))}
+			</ul>
+		</section>
+	)
 }

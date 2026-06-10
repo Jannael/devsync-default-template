@@ -7,19 +7,19 @@ import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
+	vite: {
+		plugins: [tailwindcss()],
+	},
 
-  site: devsync.site,
+	site: devsync.site,
 
-  i18n: {
-    defaultLocale: defaultLang,
-    locales: languages,
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
+	i18n: {
+		defaultLocale: defaultLang,
+		locales: languages,
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
 
-  integrations: [sitemap()],
+	integrations: [sitemap()],
 })

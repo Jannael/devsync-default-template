@@ -11,25 +11,20 @@ const translation = translations[lang]
 ---
 
 {
-  Array.isArray(experience) && experience.length > 0 && (
-    <section id="experience" class="relative m-auto w-full max-w-4xl px-6 py-16">
-      <div class="mb-12">
-        <h2 class="bg-accent-light mb-2 inline-block rounded px-3 py-1 text-2xl font-bold lg:text-3xl">
-          {translation['Professional Experience']}
-        </h2>
-        <span class="text-text-secondary ml-3 text-lg">
-          ↝ {experience.length + ' '}{' '}
-          {experience.length === 1
-            ? translation['year of experience']
-            : translation['years of experience']}
-        </span>
-      </div>
+	Array.isArray(experience) && experience.length > 0 && (
+		<section id="experience" class="relative m-auto w-full max-w-4xl px-6 py-16">
+			<div class="mb-12">
+				<h2 class="bg-accent-light mb-2 inline-block rounded px-3 py-1 text-2xl font-bold lg:text-3xl">{translation['Professional Experience']}</h2>
+				<span class="text-text-secondary ml-3 text-lg">
+					↝ {experience.length + ' '} {experience.length === 1 ? translation['year of experience'] : translation['years of experience']}
+				</span>
+			</div>
 
-      <ul class="relative">
-        {experience.map((exp, i) => (
-          <TimelineItem {...exp} index={i} isLast={i === experience.length - 1} />
-        ))}
-      </ul>
-    </section>
-  )
+			<ul class="relative">
+				{experience.map((exp, i) => (
+					<TimelineItem {...exp} index={i} isLast={i === experience.length - 1} />
+				))}
+			</ul>
+		</section>
+	)
 }

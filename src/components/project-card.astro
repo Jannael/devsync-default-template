@@ -1,98 +1,85 @@
 ---
 interface Props {
-  name?: string
-  img?: string
-  web?: string
-  links?: {
-    name?: string
-    url?: string
-    mdBadge?: string
-    icon?: string
-  }[]
-  description?: string
-  list?: {
-    title?: string
-    items?: {
-      highlight?: string
-      description?: string
-    }[]
-  }
-  skills?: {
-    name?: string
-    mdBadge?: string
-    icon?: string
-  }[]
+	name?: string
+	img?: string
+	web?: string
+	links?: {
+		name?: string
+		url?: string
+		mdBadge?: string
+		icon?: string
+	}[]
+	description?: string
+	list?: {
+		title?: string
+		items?: {
+			highlight?: string
+			description?: string
+		}[]
+	}
+	skills?: {
+		name?: string
+		mdBadge?: string
+		icon?: string
+	}[]
 }
 
-const { name, img, web, links, description, list, skills } = Astro.props
+const { name, img, web, links, description, skills } = Astro.props
 ---
 
 <li class="group">
-  <article class="card flex h-full flex-col overflow-hidden transition-all duration-300">
-    {
-      img && (
-        <a
-          href={web ?? '#'}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="block overflow-hidden pt-3"
-        >
-          <img
-            src={img}
-            alt={name ?? 'Project preview'}
-            class="h-48 w-full object-contain transition-transform duration-500 group-hover:scale-105"
-            width="800"
-            height="450"
-          />
-        </a>
-      )
-    }
+	<article class="card flex h-full flex-col overflow-hidden transition-all duration-300">
+		{
+			img && (
+				<a href={web ?? '#'} target="_blank" rel="noopener noreferrer" class="block overflow-hidden pt-3">
+					<img
+						src={img}
+						alt={name ?? 'Project preview'}
+						class="h-48 w-full object-contain transition-transform duration-500 group-hover:scale-105"
+						width="800"
+						height="450"
+					/>
+				</a>
+			)
+		}
 
-    <div class="flex flex-1 flex-col p-6">
-      <div class="flex-1">
-        {name && <h3 class="mb-3 text-xl font-bold">{name}</h3>}
+		<div class="flex flex-1 flex-col p-6">
+			<div class="flex-1">
+				{name && <h3 class="mb-3 text-xl font-bold">{name}</h3>}
 
-        {
-          description && (
-            <p class="text-text-secondary mb-4 text-sm leading-relaxed">{description}</p>
-          )
-        }
-      </div>
+				{description && <p class="text-text-secondary mb-4 text-sm leading-relaxed">{description}</p>}
+			</div>
 
-      {
-        links?.length && (
-          <div class="mb-4 flex flex-wrap gap-2">
-            {links.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="border-border bg-main hover:border-accent hover:text-accent inline-flex items-center rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-300"
-              >
-                {link.icon && (
-                  <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5 shrink-0" />
-                )}
-                {link.name}
-              </a>
-            ))}
-          </div>
-        )
-      }
+			{
+				links?.length && (
+					<div class="mb-4 flex flex-wrap gap-2">
+						{links.map((link) => (
+							<a
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="border-border bg-main hover:border-accent hover:text-accent inline-flex items-center rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-300"
+							>
+								{link.icon && <img src={link.icon} alt={link.name} class="mr-1.5 inline h-3.5 w-3.5 shrink-0" />}
+								{link.name}
+							</a>
+						))}
+					</div>
+				)
+			}
 
-      {
-        skills?.length && (
-          <div class="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span class="border-border bg-main inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium">
-                {skill.icon && (
-                  <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3 shrink-0" />
-                )}
-                {skill.name}
-              </span>
-            ))}
-          </div>
-        )
-      }
-    </div>
-  </article>
+			{
+				skills?.length && (
+					<div class="flex flex-wrap gap-2">
+						{skills.map((skill) => (
+							<span class="border-border bg-main inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium">
+								{skill.icon && <img src={skill.icon} alt={skill.name} class="mr-1.5 inline h-3 w-3 shrink-0" />}
+								{skill.name}
+							</span>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</article>
 </li>

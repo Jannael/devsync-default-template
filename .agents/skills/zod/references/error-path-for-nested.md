@@ -15,32 +15,32 @@ When validating nested objects or arrays, `issue.path` tells you exactly where t
 import { z } from 'zod'
 
 const orderSchema = z.object({
-  customer: z.object({
-    name: z.string().min(1, 'Name required'),
-    address: z.object({
-      street: z.string().min(1, 'Street required'),
-      city: z.string().min(1, 'City required'),
-    }),
-  }),
-  items: z.array(
-    z.object({
-      productId: z.string(),
-      quantity: z.number().positive('Quantity must be positive'),
-    })
-  ),
+	customer: z.object({
+		name: z.string().min(1, 'Name required'),
+		address: z.object({
+			street: z.string().min(1, 'Street required'),
+			city: z.string().min(1, 'City required'),
+		}),
+	}),
+	items: z.array(
+		z.object({
+			productId: z.string(),
+			quantity: z.number().positive('Quantity must be positive'),
+		}),
+	),
 })
 
 const result = orderSchema.safeParse({
-  customer: { name: '', address: { street: '', city: '' } },
-  items: [{ productId: 'abc', quantity: -1 }],
+	customer: { name: '', address: { street: '', city: '' } },
+	items: [{ productId: 'abc', quantity: -1 }],
 })
 
 if (!result.success) {
-  // Only showing message, not WHERE the error is
-  result.error.issues.forEach((issue) => {
-    console.log(issue.message) // 'Name required', 'Street required', 'Quantity must be positive'
-    // User: "Which quantity? Which field?"
-  })
+	// Only showing message, not WHERE the error is
+	result.error.issues.forEach((issue) => {
+		console.log(issue.message) // 'Name required', 'Street required', 'Quantity must be positive'
+		// User: "Which quantity? Which field?"
+	})
 }
 ```
 
@@ -50,35 +50,35 @@ if (!result.success) {
 import { z } from 'zod'
 
 const orderSchema = z.object({
-  customer: z.object({
-    name: z.string().min(1, 'Name required'),
-    address: z.object({
-      street: z.string().min(1, 'Street required'),
-      city: z.string().min(1, 'City required'),
-    }),
-  }),
-  items: z.array(
-    z.object({
-      productId: z.string(),
-      quantity: z.number().positive('Quantity must be positive'),
-    })
-  ),
+	customer: z.object({
+		name: z.string().min(1, 'Name required'),
+		address: z.object({
+			street: z.string().min(1, 'Street required'),
+			city: z.string().min(1, 'City required'),
+		}),
+	}),
+	items: z.array(
+		z.object({
+			productId: z.string(),
+			quantity: z.number().positive('Quantity must be positive'),
+		}),
+	),
 })
 
 const result = orderSchema.safeParse({
-  customer: { name: '', address: { street: '', city: '' } },
-  items: [{ productId: 'abc', quantity: -1 }],
+	customer: { name: '', address: { street: '', city: '' } },
+	items: [{ productId: 'abc', quantity: -1 }],
 })
 
 if (!result.success) {
-  result.error.issues.forEach((issue) => {
-    // path is an array of keys/indices
-    console.log(`${issue.path.join('.')}: ${issue.message}`)
-    // 'customer.name: Name required'
-    // 'customer.address.street: Street required'
-    // 'customer.address.city: City required'
-    // 'items.0.quantity: Quantity must be positive'
-  })
+	result.error.issues.forEach((issue) => {
+		// path is an array of keys/indices
+		console.log(`${issue.path.join('.')}: ${issue.message}`)
+		// 'customer.name: Name required'
+		// 'customer.address.street: Street required'
+		// 'customer.address.city: City required'
+		// 'items.0.quantity: Quantity must be positive'
+	})
 }
 ```
 
@@ -86,15 +86,15 @@ if (!result.success) {
 
 ```typescript
 function mapErrorsToFields(error: z.ZodError) {
-  const fieldErrors: Map<string, string[]> = new Map()
+	const fieldErrors: Map<string, string[]> = new Map()
 
-  for (const issue of error.issues) {
-    const fieldPath = issue.path.join('.')
-    const existing = fieldErrors.get(fieldPath) ?? []
-    fieldErrors.set(fieldPath, [...existing, issue.message])
-  }
+	for (const issue of error.issues) {
+		const fieldPath = issue.path.join('.')
+		const existing = fieldErrors.get(fieldPath) ?? []
+		fieldErrors.set(fieldPath, [...existing, issue.message])
+	}
 
-  return fieldErrors
+	return fieldErrors
 }
 
 // Usage
@@ -109,9 +109,9 @@ errors.get('items.0.quantity') // ['Quantity must be positive']
 const itemsWithErrors: Set<number> = new Set()
 
 result.error.issues.forEach((issue) => {
-  if (issue.path[0] === 'items' && typeof issue.path[1] === 'number') {
-    itemsWithErrors.add(issue.path[1])
-  }
+	if (issue.path[0] === 'items' && typeof issue.path[1] === 'number') {
+		itemsWithErrors.add(issue.path[1])
+	}
 })
 
 // Highlight items at indices: Set { 0 }

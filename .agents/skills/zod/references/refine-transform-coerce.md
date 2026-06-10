@@ -32,8 +32,8 @@ z.string().transform((s) => s.length) // Validates string, returns length
 ```typescript
 // Wrong: transform should convert, not validate
 const schema = z.number().transform((n) => {
-  if (n < 0) throw new Error('Must be positive') // Don't throw in transform
-  return n
+	if (n < 0) throw new Error('Must be positive') // Don't throw in transform
+	return n
 })
 ```
 
@@ -66,9 +66,9 @@ coercedNumber.parse(42) // 42 (already number)
 ```typescript
 // Input: string -> Coerce to number -> Validate positive -> Transform to dollars
 const priceSchema = z.coerce
-  .number()
-  .refine((n) => n >= 0, 'Price cannot be negative')
-  .transform((cents) => `$${(cents / 100).toFixed(2)}`)
+	.number()
+	.refine((n) => n >= 0, 'Price cannot be negative')
+	.transform((cents) => `$${(cents / 100).toFixed(2)}`)
 
 priceSchema.parse('1999') // "$19.99"
 priceSchema.parse('-100') // ZodError: Price cannot be negative
@@ -78,10 +78,10 @@ priceSchema.parse('-100') // ZodError: Price cannot be negative
 
 ```typescript
 const schema = z
-  .preprocess((val) => val, z.string()) // 1. preprocess (before type check)
-  .transform((s) => s.trim()) // 2. transform (after type check)
-  .refine((s) => s.length > 0) // 3. refine (custom validation)
-  .transform((s) => s.toUpperCase()) // 4. another transform
+	.preprocess((val) => val, z.string()) // 1. preprocess (before type check)
+	.transform((s) => s.trim()) // 2. transform (after type check)
+	.refine((s) => s.length > 0) // 3. refine (custom validation)
+	.transform((s) => s.toUpperCase()) // 4. another transform
 
 // Input flows: preprocess -> type check -> transforms/refines in order
 ```

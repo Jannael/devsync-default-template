@@ -21,7 +21,7 @@ type UserId = z.infer<typeof userIdSchema> // string
 type OrderId = z.infer<typeof orderIdSchema> // string - same type!
 
 async function getOrder(orderId: OrderId) {
-  return db.orders.findUnique({ where: { id: orderId } })
+	return db.orders.findUnique({ where: { id: orderId } })
 }
 
 const userId: UserId = '550e8400-e29b-41d4-a716-446655440000'
@@ -44,7 +44,7 @@ type OrderId = z.infer<typeof orderIdSchema>
 // string & { __brand: 'OrderId' }
 
 async function getOrder(orderId: OrderId) {
-  return db.orders.findUnique({ where: { id: orderId } })
+	return db.orders.findUnique({ where: { id: orderId } })
 }
 
 const userId = userIdSchema.parse('550e8400-e29b-41d4-a716-446655440000')
@@ -73,27 +73,24 @@ const Cents = z.number().int().nonnegative().brand<'Cents'>()
 
 // Slugs
 const Slug = z
-  .string()
-  .regex(/^[a-z0-9-]+$/)
-  .brand<'Slug'>()
+	.string()
+	.regex(/^[a-z0-9-]+$/)
+	.brand<'Slug'>()
 ```
 
 **Using with object schemas:**
 
 ```typescript
 const User = z.object({
-  id: z.string().uuid().brand<'UserId'>(),
-  email: z.string().email().brand<'Email'>(),
-  referredBy: z.string().uuid().brand<'UserId'>().optional(),
+	id: z.string().uuid().brand<'UserId'>(),
+	email: z.string().email().brand<'Email'>(),
+	referredBy: z.string().uuid().brand<'UserId'>().optional(),
 })
 
 type User = z.infer<typeof User>
 
-function sendReferralBonus(
-  referrerId: z.infer<typeof User>['id'],
-  refereeId: z.infer<typeof User>['id']
-) {
-  // Can't accidentally swap these - both are UserId but distinct values
+function sendReferralBonus(referrerId: z.infer<typeof User>['id'], refereeId: z.infer<typeof User>['id']) {
+	// Can't accidentally swap these - both are UserId but distinct values
 }
 ```
 

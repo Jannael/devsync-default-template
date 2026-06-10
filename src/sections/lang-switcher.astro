@@ -2,33 +2,30 @@
 import { defaultLang, languages } from '@core'
 
 interface Props {
-  currentLang?: string
-  class?: string
+	currentLang?: string
+	class?: string
 }
 
 const { currentLang = defaultLang, class: className } = Astro.props
 ---
 
 {
-  languages.length > 1 && (
-    <nav
-      aria-label="Language selector"
-      class={`${className ?? ''} border-border bg-main flex items-center gap-1 rounded-lg border p-1`}
-    >
-      {languages.map((lang) => {
-        const isActive = lang === currentLang
-        return (
-          <a
-            href={`/${lang}/`}
-            aria-current={isActive ? 'page' : undefined}
-            class={`rounded-md px-3 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
-              isActive ? 'bg-accent text-white' : 'text-text-secondary hover:text-accent'
-            }`}
-          >
-            {lang}
-          </a>
-        )
-      })}
-    </nav>
-  )
+	languages.length > 1 && (
+		<nav aria-label="Language selector" class={`${className ?? ''} border-border bg-main flex items-center gap-1 rounded-lg border p-1`}>
+			{languages.map((lang) => {
+				const isActive = lang === currentLang
+				return (
+					<a
+						href={`/${lang}/`}
+						aria-current={isActive ? 'page' : undefined}
+						class={`rounded-md px-3 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+							isActive ? 'bg-accent text-white' : 'text-text-secondary hover:text-accent'
+						}`}
+					>
+						{lang}
+					</a>
+				)
+			})}
+		</nav>
+	)
 }

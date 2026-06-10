@@ -32,14 +32,14 @@ import { userSchema, orderSchema, analyticsSchema, reportsSchema } from '@/schem
 import { userSchema } from '@/schemas/user'
 
 async function loadAnalyticsSchema() {
-  const { analyticsSchema } = await import('@/schemas/analytics')
-  return analyticsSchema
+	const { analyticsSchema } = await import('@/schemas/analytics')
+	return analyticsSchema
 }
 
 // Use when needed
 async function handleAnalyticsData(data: unknown) {
-  const schema = await loadAnalyticsSchema()
-  return schema.safeParse(data)
+	const schema = await loadAnalyticsSchema()
+	return schema.safeParse(data)
 }
 ```
 
@@ -104,10 +104,10 @@ export default function ReportsForm() {
 ```typescript
 // schemas/registry.ts
 const schemaLoaders = {
-  user: () => import('./user').then((m) => m.userSchema),
-  order: () => import('./order').then((m) => m.orderSchema),
-  analytics: () => import('./analytics').then((m) => m.analyticsSchema),
-  reports: () => import('./reports').then((m) => m.reportsSchema),
+	user: () => import('./user').then((m) => m.userSchema),
+	order: () => import('./order').then((m) => m.orderSchema),
+	analytics: () => import('./analytics').then((m) => m.analyticsSchema),
+	reports: () => import('./reports').then((m) => m.reportsSchema),
 } as const
 
 type SchemaName = keyof typeof schemaLoaders
@@ -115,11 +115,11 @@ type SchemaName = keyof typeof schemaLoaders
 const schemaCache = new Map<SchemaName, z.ZodType>()
 
 export async function getSchema(name: SchemaName) {
-  if (!schemaCache.has(name)) {
-    const schema = await schemaLoaders[name]()
-    schemaCache.set(name, schema)
-  }
-  return schemaCache.get(name)!
+	if (!schemaCache.has(name)) {
+		const schema = await schemaLoaders[name]()
+		schemaCache.set(name, schema)
+	}
+	return schemaCache.get(name)!
 }
 
 // Usage

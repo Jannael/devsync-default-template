@@ -32,9 +32,9 @@ import { z } from 'zod'
 
 // Methods are attached to schema objects - hard to tree-shake
 const userSchema = z.object({
-  name: z.string().min(1).max(100),
-  email: z.string().email(),
-  age: z.number().int().positive(),
+	name: z.string().min(1).max(100),
+	email: z.string().email(),
+	age: z.number().int().positive(),
 })
 
 const result = userSchema.safeParse(data)
@@ -47,9 +47,9 @@ import * as z from '@zod/mini'
 
 // Functions are imported individually - tree-shakeable
 const userSchema = z.object({
-  name: z.pipe(z.string(), z.minLength(1), z.maxLength(100)),
-  email: z.pipe(z.string(), z.email()),
-  age: z.pipe(z.number(), z.int(), z.positive()),
+	name: z.pipe(z.string(), z.minLength(1), z.maxLength(100)),
+	email: z.pipe(z.string(), z.email()),
+	age: z.pipe(z.number(), z.int(), z.positive()),
 })
 
 const result = z.safeParse(userSchema, data)

@@ -1,92 +1,92 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-main: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6b7280;
-  --color-accent: #338e5e;
-  --color-accent-light: #e6f4ec;
-  --color-border: #e5e7eb;
+	--color-main: #ffffff;
+	--color-text: #1a1a1a;
+	--color-text-secondary: #6b7280;
+	--color-accent: #338e5e;
+	--color-accent-light: #e6f4ec;
+	--color-border: #e5e7eb;
 }
 
 .dark {
-  --color-main: #0f0f0f;
-  --color-text: #f5f5f5;
-  --color-text-secondary: #9ca3af;
-  --color-accent: #4ade80;
-  --color-accent-light: #1a2e22;
-  --color-border: #2a2a2a;
+	--color-main: #0f0f0f;
+	--color-text: #f5f5f5;
+	--color-text-secondary: #9ca3af;
+	--color-accent: #4ade80;
+	--color-accent-light: #1a2e22;
+	--color-border: #2a2a2a;
 }
 
 body {
-  background: var(--color-main);
-  min-height: 100vh;
+	background: var(--color-main);
+	min-height: 100vh;
 }
 
 .section-divider {
-  height: 2px;
-  background: var(--color-accent);
-  opacity: 0.6;
+	height: 2px;
+	background: var(--color-accent);
+	opacity: 0.6;
 }
 
 .highlight {
-  background: var(--color-accent-light);
-  padding: 0 0.25rem;
-  border-radius: 0.125rem;
+	background: var(--color-accent-light);
+	padding: 0 0.25rem;
+	border-radius: 0.125rem;
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent), #5cb87a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+	background: linear-gradient(135deg, var(--color-accent), #5cb87a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
 }
 
 .card {
-  border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
-  background: var(--color-main);
+	border: 1px solid var(--color-border);
+	border-radius: 0.75rem;
+	background: var(--color-main);
 }
 
 .card:hover {
-  border-color: var(--color-accent);
+	border-color: var(--color-accent);
 }
 
 .timeline-line {
-  position: absolute;
-  left: 1rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--color-border);
+	position: absolute;
+	left: 1rem;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: var(--color-border);
 }
 
 .timeline-dot {
-  position: absolute;
-  left: 0.625rem;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-  border: 2px solid var(--color-main);
+	position: absolute;
+	left: 0.625rem;
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 50%;
+	background: var(--color-accent);
+	border: 2px solid var(--color-main);
 }
 
 img[src^='/icons/'] {
-  filter: brightness(0);
+	filter: brightness(0);
 }
 
 .dark img[src^='/icons/'] {
-  filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
 }
 
 img[src^='https://cdn.simpleicons.org/'] {
-  filter: brightness(0);
+	filter: brightness(0);
 }
 
 .dark img[src^='https://cdn.simpleicons.org/'] {
-  filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
 }
 
 .dark .footer-logo {
-  filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
 }
