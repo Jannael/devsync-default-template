@@ -1,8 +1,0 @@
-{
-  "cSpell.words": ["devsync", "jannael"],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
-}

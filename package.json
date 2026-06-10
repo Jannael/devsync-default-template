@@ -8,11 +8,7 @@
     "build:preview": "node scripts/copy-preview && bunx @jannael/devsync build && node scripts/move-cv-pdfs.js && git reset --hard && git clean -fd",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "bun run build:preview && wrangler pages deploy",
-    "lint:fix": "oxlint --fix",
-    "fmt": "prettier --write .",
-    "fmt:check": "prettier --check .",
-    "prepare": "husky"
+    "deploy": "bun run build:preview && wrangler pages deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
@@ -31,21 +27,6 @@
     "pathToCompiledCV": "./dist/[lang]/cv/index.html"
   },
   "devDependencies": {
-    "husky": "9.1.7",
-    "lint-staged": "17.0.7",
-    "oxlint": "1.68.0",
-    "prettier": "3.8.3",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.8.0",
     "wrangler": "4.98.0"
-  },
-  "lint-staged": {
-    "*.{astro,js,ts,mjs}": [
-      "prettier --write",
-      "oxlint --fix"
-    ],
-    "*.{json,css,md}": [
-      "prettier --write"
-    ]
   }
 }
